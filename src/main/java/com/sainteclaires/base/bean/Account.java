@@ -11,6 +11,7 @@ public class Account extends BaseEntity {
 	private String address2;
 	private String phone;// 手机
 	private String postCode;// 邮编
+	private String test;
 
 	public String getLoginName() {
 		return loginName;
