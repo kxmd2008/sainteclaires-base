@@ -5,7 +5,7 @@ import org.luis.basic.domain.BaseEntity;
 public class Picture extends BaseEntity {
 	private static final long serialVersionUID = 7231158911559060931L;
 	private String icon;
-	private Product product;
+	private String productNo;
 
 	public String getIcon() {
 		return icon;
@@ -15,12 +15,12 @@ public class Picture extends BaseEntity {
 		this.icon = icon;
 	}
 
-	public Product getProduct() {
-		return product;
+	public String getProductNo() {
+		return productNo;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProductNo(String productNo) {
+		this.productNo = productNo;
 	}
 
 }
