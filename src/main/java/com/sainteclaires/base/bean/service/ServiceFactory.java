@@ -5,7 +5,7 @@ import org.luis.basic.domain.IGenericService;
 import com.sainteclaires.base.bean.Account;
 import com.sainteclaires.base.bean.Category;
 import com.sainteclaires.base.bean.Order;
-import com.sainteclaires.base.bean.OrderDetail;
+import com.sainteclaires.base.bean.OrderItem;
 import com.sainteclaires.base.bean.Picture;
 import com.sainteclaires.base.bean.Product;
 import com.sainteclaires.base.bean.ProductSize;
@@ -39,11 +39,11 @@ public class ServiceFactory {
 		return orderService;
 	}
 
-	private static IGenericService<OrderDetail> orderDetailService;
+	private static IGenericService<OrderItem> orderDetailService;
 
-	public static IGenericService<OrderDetail> getOrderDetailService() {
+	public static IGenericService<OrderItem> getOrderDetailService() {
 		if (orderDetailService == null) {
-			orderDetailService = GenericServiceBuilder.build(OrderDetail.class);
+			orderDetailService = GenericServiceBuilder.build(OrderItem.class);
 		}
 		return orderDetailService;
 	}

@@ -19,7 +19,7 @@ public class Order extends BaseEntity {
 	private BigDecimal amount;// 订单金额
 	private Integer status;// 订单状态
 
-	private List<OrderDetail> details;// 订单明细
+	private List<OrderItem> details;// 订单明细
 
 	public String getNo() {
 		return no;
@@ -85,11 +85,11 @@ public class Order extends BaseEntity {
 		this.status = status;
 	}
 
-	public List<OrderDetail> getDetails() {
+	public List<OrderItem> getDetails() {
 		return details;
 	}
 
-	public void setDetails(List<OrderDetail> details) {
+	public void setDetails(List<OrderItem> details) {
 		this.details = details;
 	}
 
