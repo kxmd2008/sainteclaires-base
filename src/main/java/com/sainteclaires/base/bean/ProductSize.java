@@ -19,7 +19,7 @@ import org.luis.basic.domain.BaseEntity;
 public class ProductSize extends BaseEntity {
 	private static final long serialVersionUID = -6084029923513319887L;
 	private String size;
-	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "prodSizes")
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "prodSizes")
 	@JoinTable(name = "product_productsize", joinColumns = { @JoinColumn(name = "size_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "product_id", referencedColumnName = "id") })
 	private List<Product> products;
 

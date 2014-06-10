@@ -1,5 +1,8 @@
 package com.sainteclaires.base.bean;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 import org.luis.basic.domain.BaseEntity;
 
 /**
@@ -7,12 +10,20 @@ import org.luis.basic.domain.BaseEntity;
  */
 public class ShoppingBag extends BaseEntity {
 	private static final long serialVersionUID = 7364592180210908494L;
-	private String productNo;
-	private Integer number;
+	private List<ProductShot> productShots;
 	private String customerNo;
 	private String t;// t 表示放到用户浏览器端的cookie值，要求unique。
 	private String sessionId;
+	private BigDecimal totalAmount;
 	private Long timestamp;
+
+	public BigDecimal getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(BigDecimal totalAmount) {
+		this.totalAmount = totalAmount;
+	}
 
 	public Long getTimestamp() {
 		return timestamp;
@@ -30,20 +41,12 @@ public class ShoppingBag extends BaseEntity {
 		this.sessionId = sessionId;
 	}
 
-	public String getProductNo() {
-		return productNo;
+	public List<ProductShot> getProductShots() {
+		return productShots;
 	}
 
-	public void setProductNo(String productNo) {
-		this.productNo = productNo;
-	}
-
-	public Integer getNumber() {
-		return number;
-	}
-
-	public void setNumber(Integer number) {
-		this.number = number;
+	public void setProductShots(List<ProductShot> productShots) {
+		this.productShots = productShots;
 	}
 
 	public String getCustomerNo() {
