@@ -13,13 +13,13 @@ public class Order extends BaseEntity {
 	private String no;// 订单号
 	private String orderDate;// 下单日期
 	private long orderTime;// 下单时间
-	private String tradeDate;
-	private long tradeTime;// 下单时间
+	private String tradeDate;// 付款日期
+	private long tradeTime;// 付款时间
 	private String account;// 客户帐号
 	private BigDecimal amount;// 订单金额
-	private Integer status;// 订单状态
+	private Integer status;// 订单状态 0:待付款；1：已付款待处理；2：已发货；3：已收货
 
-	private List<OrderItem> details;// 订单明细
+	private List<OrderItem> items;// 订单明细
 
 	public String getNo() {
 		return no;
@@ -85,12 +85,12 @@ public class Order extends BaseEntity {
 		this.status = status;
 	}
 
-	public List<OrderItem> getDetails() {
-		return details;
+	public List<OrderItem> getItems() {
+		return items;
 	}
 
-	public void setDetails(List<OrderItem> details) {
-		this.details = details;
+	public void setItems(List<OrderItem> items) {
+		this.items = items;
 	}
 
 }

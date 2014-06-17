@@ -3,6 +3,8 @@ package com.sainteclaires.base.bean;
 import org.luis.basic.domain.BaseEntity;
 
 public class Account extends BaseEntity {
+	public static final String TYPE_ADMIN = "ADMIN";
+	public static final String TYPE_CUSTOMER = "CUSTOMER";
 	private static final long serialVersionUID = 178723493562907433L;
 	private String loginName;
 	private String password;
@@ -10,6 +12,15 @@ public class Account extends BaseEntity {
 	private String address;
 	private String phone;// 手机
 	private String postCode;// 邮编
+	private String type = TYPE_CUSTOMER;// 帐号类型
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	public String getLoginName() {
 		return loginName;
