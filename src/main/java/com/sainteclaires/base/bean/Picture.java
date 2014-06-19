@@ -1,7 +1,12 @@
 package com.sainteclaires.base.bean;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import org.luis.basic.domain.BaseEntity;
 
+@Entity
+@Table(name = "picture")
 public class Picture extends BaseEntity {
 	private static final long serialVersionUID = 7231158911559060931L;
 	private String icon;

@@ -3,8 +3,13 @@ package com.sainteclaires.base.bean;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import org.luis.basic.domain.BaseEntity;
 
+@Entity
+@Table(name = "order")
 public class Order extends BaseEntity {
 	/**
 	 * 

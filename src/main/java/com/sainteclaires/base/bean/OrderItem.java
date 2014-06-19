@@ -2,8 +2,13 @@ package com.sainteclaires.base.bean;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import org.luis.basic.domain.BaseEntity;
 
+@Entity
+@Table(name = "order_item")
 public class OrderItem extends BaseEntity {
 	private static final long serialVersionUID = 7892163388246757549L;
 	private Product product;// 购买产品

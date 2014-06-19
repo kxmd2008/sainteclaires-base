@@ -1,6 +1,14 @@
 package com.sainteclaires.base.bean;
 
-public class Address {
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import org.luis.basic.domain.BaseEntity;
+
+@Entity
+@Table(name = "address")
+public class Address extends BaseEntity {
+	private static final long serialVersionUID = -2635766712923169442L;
 	private String loginName;
 	private String address;
 	private String postCode;// 邮编

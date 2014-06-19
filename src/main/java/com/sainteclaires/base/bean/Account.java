@@ -1,7 +1,12 @@
 package com.sainteclaires.base.bean;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import org.luis.basic.domain.BaseEntity;
 
+@Entity
+@Table(name = "account")
 public class Account extends BaseEntity {
 	public static final String TYPE_ADMIN = "ADMIN";
 	public static final String TYPE_CUSTOMER = "CUSTOMER";

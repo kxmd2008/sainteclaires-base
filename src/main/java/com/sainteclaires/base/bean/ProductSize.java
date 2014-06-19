@@ -3,10 +3,12 @@ package com.sainteclaires.base.bean;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import org.luis.basic.domain.BaseEntity;
 
@@ -16,6 +18,8 @@ import org.luis.basic.domain.BaseEntity;
  * @author guoliang.li
  * 
  */
+@Entity
+@Table(name = "product_size")
 public class ProductSize extends BaseEntity {
 	private static final long serialVersionUID = -6084029923513319887L;
 	private String size;

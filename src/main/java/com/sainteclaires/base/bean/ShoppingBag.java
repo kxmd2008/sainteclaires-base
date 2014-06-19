@@ -3,11 +3,16 @@ package com.sainteclaires.base.bean;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import org.luis.basic.domain.BaseEntity;
 
 /**
  * 购物车
  */
+@Entity
+@Table(name = "shopping_bag")
 public class ShoppingBag extends BaseEntity {
 	private static final long serialVersionUID = 7364592180210908494L;
 	private List<ProductShot> productShots;
