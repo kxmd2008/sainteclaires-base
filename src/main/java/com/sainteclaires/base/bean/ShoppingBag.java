@@ -3,8 +3,10 @@ package com.sainteclaires.base.bean;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.luis.basic.domain.BaseEntity;
 
@@ -15,9 +17,13 @@ import org.luis.basic.domain.BaseEntity;
 @Table(name = "shopping_bag")
 public class ShoppingBag extends BaseEntity {
 	private static final long serialVersionUID = 7364592180210908494L;
+	@Transient
 	private List<ProductShot> productShots;
+	@Column(length = 50)
 	private String customerNo;
+	@Column(length = 50)
 	private String t;// t 表示放到用户浏览器端的cookie值，要求unique。
+	@Column(length = 50)
 	private String sessionId;
 	private BigDecimal totalAmount;
 	private Long timestamp;
@@ -46,14 +52,6 @@ public class ShoppingBag extends BaseEntity {
 		this.sessionId = sessionId;
 	}
 
-	public List<ProductShot> getProductShots() {
-		return productShots;
-	}
-
-	public void setProductShots(List<ProductShot> productShots) {
-		this.productShots = productShots;
-	}
-
 	public String getCustomerNo() {
 		return customerNo;
 	}
@@ -68,6 +66,14 @@ public class ShoppingBag extends BaseEntity {
 
 	public void setT(String t) {
 		this.t = t;
+	}
+
+	public List<ProductShot> getProductShots() {
+		return productShots;
+	}
+
+	public void setProductShots(List<ProductShot> productShots) {
+		this.productShots = productShots;
 	}
 
 }

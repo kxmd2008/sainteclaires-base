@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
@@ -16,7 +17,9 @@ import org.luis.basic.domain.BaseEntity;
 public class Product extends BaseEntity {
 	
 	private static final long serialVersionUID = -4680639268444282632L;
+	@Column(length=50)
 	private String name;// 产品名称
+	@Column(length=50)
 	private String productNo;// 产品编号
 	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<ProductSize> prodSizes;// 尺码

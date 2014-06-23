@@ -1,5 +1,6 @@
 package com.sainteclaires.base.bean;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -7,21 +8,23 @@ import org.luis.basic.domain.BaseEntity;
 
 /**
  * 产品快照
+ * 
  * @author guoliang.li
  */
 @Entity
 @Table(name = "product_shot")
 public class ProductShot extends BaseEntity {
 	private static final long serialVersionUID = -3953358065639095508L;
-	private Product product;
+	@Column(length=50)
+	private String productNo;
 	private Integer number = Integer.valueOf(1);
 
-	public Product getProduct() {
-		return product;
+	public String getProductNo() {
+		return productNo;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProductNo(String productNo) {
+		this.productNo = productNo;
 	}
 
 	public Integer getNumber() {

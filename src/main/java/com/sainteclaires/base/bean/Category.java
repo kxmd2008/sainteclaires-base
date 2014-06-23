@@ -1,5 +1,6 @@
 package com.sainteclaires.base.bean;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -10,6 +11,7 @@ import org.luis.basic.domain.BaseEntity;
 public class Category extends BaseEntity {
 
 	private static final long serialVersionUID = -6305965741752477104L;
+	@Column(length=50)
 	private String name;
 	private Long parentId;//parentId不为null，为二级类别
 

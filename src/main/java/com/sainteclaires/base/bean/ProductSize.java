@@ -3,6 +3,7 @@ package com.sainteclaires.base.bean;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -22,6 +23,7 @@ import org.luis.basic.domain.BaseEntity;
 @Table(name = "product_size")
 public class ProductSize extends BaseEntity {
 	private static final long serialVersionUID = -6084029923513319887L;
+	@Column(length=20)
 	private String size;
 	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "prodSizes")
 	@JoinTable(name = "product_productsize", joinColumns = { @JoinColumn(name = "size_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "product_id", referencedColumnName = "id") })
