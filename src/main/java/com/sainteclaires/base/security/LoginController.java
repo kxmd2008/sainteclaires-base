@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author guoliang.li
  *
  */
-@Controller
-@RequestMapping("auth")
+//@Controller
+//@RequestMapping("auth")
 public class LoginController {
 	
 	/**
