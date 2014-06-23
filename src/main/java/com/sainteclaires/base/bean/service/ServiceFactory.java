@@ -2,13 +2,17 @@ package com.sainteclaires.base.bean.service;
 
 import org.luis.basic.domain.GenericServiceBuilder;
 import org.luis.basic.domain.IGenericService;
+
 import com.sainteclaires.base.bean.Account;
+import com.sainteclaires.base.bean.Address;
 import com.sainteclaires.base.bean.Category;
 import com.sainteclaires.base.bean.Order;
 import com.sainteclaires.base.bean.OrderItem;
 import com.sainteclaires.base.bean.Picture;
 import com.sainteclaires.base.bean.Product;
+import com.sainteclaires.base.bean.ProductShot;
 import com.sainteclaires.base.bean.ProductSize;
+import com.sainteclaires.base.bean.ShoppingBag;
 
 public class ServiceFactory {
 
@@ -19,6 +23,15 @@ public class ServiceFactory {
 			accountService = GenericServiceBuilder.build(Account.class);
 		}
 		return accountService;
+	}
+	
+	private static IGenericService<Address> addressService;
+
+	public static IGenericService<Address> getAddressService() {
+		if (addressService == null) {
+			addressService = GenericServiceBuilder.build(Address.class);
+		}
+		return addressService;
 	}
 
 	private static IGenericService<Category> categoryService;
@@ -73,6 +86,24 @@ public class ServiceFactory {
 			productSizeService = GenericServiceBuilder.build(ProductSize.class);
 		}
 		return productSizeService;
+	}
+	
+	private static IGenericService<ProductShot> productShotService;
+
+	public static IGenericService<ProductShot> getProductShotService() {
+		if (productShotService == null) {
+			productShotService = GenericServiceBuilder.build(ProductShot.class);
+		}
+		return productShotService;
+	}
+	
+	private static IGenericService<ShoppingBag> shoppingBagService;
+
+	public static IGenericService<ShoppingBag> getShoppingBagService() {
+		if (shoppingBagService == null) {
+			shoppingBagService = GenericServiceBuilder.build(ShoppingBag.class);
+		}
+		return shoppingBagService;
 	}
 
 }

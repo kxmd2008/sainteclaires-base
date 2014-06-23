@@ -21,8 +21,7 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String getAdminPage() {
-		return "adminlogin";
-
+		return "admin/login";
 	}
 
 //	@RequestMapping(value = "login", method = RequestMethod.POST)

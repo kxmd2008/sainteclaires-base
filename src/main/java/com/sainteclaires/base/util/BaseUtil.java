@@ -24,4 +24,5 @@ public class BaseUtil {
 		}
 		return cates.get(pid);
 	}
+	
 }

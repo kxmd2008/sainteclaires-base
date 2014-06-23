@@ -19,11 +19,13 @@ public class Order extends BaseEntity {
 	private static final long serialVersionUID = 6624377395219783412L;
 	@Column(length = 50)
 	private String no;// 订单号
-	@Column(length = 8)
+	@Column(length = 8, name = "order_date")
 	private String orderDate;// 下单日期
+	@Column(name = "order_time")
 	private long orderTime;// 下单时间
-	@Column(length = 8)
+	@Column(length = 8, name = "trade_date")
 	private String tradeDate;// 付款日期
+	@Column(name = "trade_time")
 	private long tradeTime;// 付款时间
 	@Column(length = 50)
 	private String account;// 客户帐号

@@ -15,7 +15,7 @@ import org.luis.basic.domain.BaseEntity;
 @Table(name = "product_shot")
 public class ProductShot extends BaseEntity {
 	private static final long serialVersionUID = -3953358065639095508L;
-	@Column(length=50)
+	@Column(length=50, name = "product_no")
 	private String productNo;
 	private Integer number = Integer.valueOf(1);
 

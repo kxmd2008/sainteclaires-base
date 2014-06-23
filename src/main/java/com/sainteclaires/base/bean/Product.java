@@ -19,7 +19,7 @@ public class Product extends BaseEntity {
 	private static final long serialVersionUID = -4680639268444282632L;
 	@Column(length=50)
 	private String name;// 产品名称
-	@Column(length=50)
+	@Column(length=50, name = "product_no")
 	private String productNo;// 产品编号
 	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<ProductSize> prodSizes;// 尺码

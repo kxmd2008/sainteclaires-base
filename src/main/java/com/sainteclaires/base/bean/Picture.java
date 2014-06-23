@@ -12,7 +12,7 @@ public class Picture extends BaseEntity {
 	private static final long serialVersionUID = 7231158911559060931L;
 	@Column(length=50)
 	private String icon;
-	@Column(length=50)
+	@Column(length=50, name = "product_no")
 	private String productNo;
 
 	public String getIcon() {

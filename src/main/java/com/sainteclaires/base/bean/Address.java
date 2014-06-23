@@ -10,12 +10,14 @@ import org.luis.basic.domain.BaseEntity;
 @Table(name = "address")
 public class Address extends BaseEntity {
 	private static final long serialVersionUID = -2635766712923169442L;
-	@Column(length=50)
+	@Column(length = 50, name = "login_name")
 	private String loginName;
-	@Column(length=200)
+	@Column(length = 50, name = "cust_name")
+	private String custName;// 收件人
+	@Column(length = 200)
 	private String address;
-	@Column(length=10)
-	private String postCode;// 邮编
+	@Column(length = 10)
+	private String post;// 邮编
 
 	public String getLoginName() {
 		return loginName;
@@ -33,12 +35,20 @@ public class Address extends BaseEntity {
 		this.address = address;
 	}
 
-	public String getPostCode() {
-		return postCode;
+	public String getPost() {
+		return post;
 	}
 
-	public void setPostCode(String postCode) {
-		this.postCode = postCode;
+	public void setPost(String post) {
+		this.post = post;
+	}
+
+	public String getCustName() {
+		return custName;
+	}
+
+	public void setCustName(String custName) {
+		this.custName = custName;
 	}
 
 }

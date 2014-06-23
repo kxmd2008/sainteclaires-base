@@ -19,12 +19,13 @@ public class ShoppingBag extends BaseEntity {
 	private static final long serialVersionUID = 7364592180210908494L;
 	@Transient
 	private List<ProductShot> productShots;
-	@Column(length = 50)
-	private String customerNo;
+	@Column(length = 50, name = "cust_no")
+	private String custNo;
 	@Column(length = 50)
 	private String t;// t 表示放到用户浏览器端的cookie值，要求unique。
-	@Column(length = 50)
+	@Column(length = 50, name = "session_id")
 	private String sessionId;
+	@Column(name = "total_amount")
 	private BigDecimal totalAmount;
 	private Long timestamp;
 
@@ -52,12 +53,12 @@ public class ShoppingBag extends BaseEntity {
 		this.sessionId = sessionId;
 	}
 
-	public String getCustomerNo() {
-		return customerNo;
+	public String getCustNo() {
+		return custNo;
 	}
 
-	public void setCustomerNo(String customerNo) {
-		this.customerNo = customerNo;
+	public void setCustNo(String custNo) {
+		this.custNo = custNo;
 	}
 
 	public String getT() {

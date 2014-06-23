@@ -12,19 +12,19 @@ public class Account extends BaseEntity {
 	public static final String TYPE_ADMIN = "ADMIN";
 	public static final String TYPE_CUSTOMER = "CUSTOMER";
 	private static final long serialVersionUID = 178723493562907433L;
-	@Column(length=50)
+	@Column(length = 50, name = "login_name")
 	private String loginName;
-	@Column(length=50)
+	@Column(length = 50)
 	private String password;
-	@Column(length=50)
+	@Column(length = 50, name = "cust_name")
 	private String custName;// 客户名，收件人
-	@Column(length=200)
+	@Column(length = 200)
 	private String address;
-	@Column(length=20)
+	@Column(length = 20)
 	private String phone;// 手机
-	@Column(length=10)
-	private String postCode;// 邮编
-	@Column(length=2)
+	@Column(length = 10)
+	private String post;// 邮编
+	@Column(length = 2)
 	private String type = TYPE_CUSTOMER;// 帐号类型
 
 	public String getType() {
@@ -67,12 +67,12 @@ public class Account extends BaseEntity {
 		this.phone = phone;
 	}
 
-	public String getPostCode() {
-		return postCode;
+	public String getPost() {
+		return post;
 	}
 
-	public void setPostCode(String postCode) {
-		this.postCode = postCode;
+	public void setPost(String post) {
+		this.post = post;
 	}
 
 	public String getAddress() {
