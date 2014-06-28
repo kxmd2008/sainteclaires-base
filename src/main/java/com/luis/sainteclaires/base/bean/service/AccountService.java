@@ -1,4 +1,4 @@
-package com.sainteclaires.base.bean.service;
+package com.luis.sainteclaires.base.bean.service;
 
 import org.apache.log4j.Logger;
 import org.luis.basic.domain.FilterAttributes;
@@ -6,7 +6,7 @@ import org.luis.basic.rest.model.SimpleMessage;
 import org.luis.basic.rest.model.SimpleMessageHead;
 import org.springframework.stereotype.Service;
 
-import com.sainteclaires.base.bean.Account;
+import com.luis.sainteclaires.base.bean.Account;
 
 @Service
 public class AccountService {

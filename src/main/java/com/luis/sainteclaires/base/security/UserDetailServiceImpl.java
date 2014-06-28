@@ -1,4 +1,4 @@
-package com.sainteclaires.base.security;
+package com.luis.sainteclaires.base.security;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,8 +12,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.sainteclaires.base.bean.Account;
-import com.sainteclaires.base.bean.service.AccountService;
+import com.luis.sainteclaires.base.bean.Account;
+import com.luis.sainteclaires.base.bean.service.AccountService;
 
 public class UserDetailServiceImpl implements UserDetailsService {
 	

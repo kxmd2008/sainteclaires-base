@@ -1,4 +1,4 @@
-package com.sainteclaires.base.rest;
+package com.luis.sainteclaires.base.rest;
 
 import org.luis.basic.rest.model.SimpleMessage;
 import org.springframework.stereotype.Controller;

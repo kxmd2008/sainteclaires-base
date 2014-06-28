@@ -1,4 +1,4 @@
-package com.sainteclaires.base.bean;
+package com.luis.sainteclaires.base.bean;
 
 import java.math.BigDecimal;
 import java.util.List;

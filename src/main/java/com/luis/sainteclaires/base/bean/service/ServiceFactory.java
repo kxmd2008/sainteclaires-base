@@ -1,18 +1,18 @@
-package com.sainteclaires.base.bean.service;
+package com.luis.sainteclaires.base.bean.service;
 
 import org.luis.basic.domain.GenericServiceBuilder;
 import org.luis.basic.domain.IGenericService;
 
-import com.sainteclaires.base.bean.Account;
-import com.sainteclaires.base.bean.Address;
-import com.sainteclaires.base.bean.Category;
-import com.sainteclaires.base.bean.Order;
-import com.sainteclaires.base.bean.OrderItem;
-import com.sainteclaires.base.bean.Picture;
-import com.sainteclaires.base.bean.Product;
-import com.sainteclaires.base.bean.ProductShot;
-import com.sainteclaires.base.bean.ProductSize;
-import com.sainteclaires.base.bean.ShoppingBag;
+import com.luis.sainteclaires.base.bean.Account;
+import com.luis.sainteclaires.base.bean.Address;
+import com.luis.sainteclaires.base.bean.Category;
+import com.luis.sainteclaires.base.bean.Order;
+import com.luis.sainteclaires.base.bean.OrderItem;
+import com.luis.sainteclaires.base.bean.Picture;
+import com.luis.sainteclaires.base.bean.Product;
+import com.luis.sainteclaires.base.bean.ProductShot;
+import com.luis.sainteclaires.base.bean.ProductSize;
+import com.luis.sainteclaires.base.bean.ShoppingBag;
 
 public class ServiceFactory {
 
