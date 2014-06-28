@@ -1,4 +1,4 @@
-package com.luis.sainteclaires.base.security;
+package org.luis.sainteclaires.base.security;
 
 import org.luis.basic.rest.model.SimpleMessage;
 import org.springframework.stereotype.Controller;

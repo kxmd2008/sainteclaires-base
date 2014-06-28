@@ -1,9 +1,11 @@
-package com.luis.sainteclaires.base.security;
+package org.luis.sainteclaires.base.security;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.luis.sainteclaires.base.bean.Account;
+import org.luis.sainteclaires.base.bean.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -12,8 +14,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.luis.sainteclaires.base.bean.Account;
-import com.luis.sainteclaires.base.bean.service.AccountService;
 
 public class UserDetailServiceImpl implements UserDetailsService {
 	

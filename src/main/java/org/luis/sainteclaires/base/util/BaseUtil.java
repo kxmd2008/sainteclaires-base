@@ -1,11 +1,12 @@
-package com.luis.sainteclaires.base.util;
+package org.luis.sainteclaires.base.util;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.luis.sainteclaires.base.bean.Category;
+import org.luis.sainteclaires.base.bean.Category;
+
 
 public class BaseUtil {
 	private static final Map<Long, List<Category>> cates = new ConcurrentHashMap<Long, List<Category>>();

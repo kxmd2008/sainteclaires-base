@@ -1,4 +1,4 @@
-package com.luis.sainteclaires.base.bean;
+package org.luis.sainteclaires.base.bean;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
