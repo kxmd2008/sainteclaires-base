@@ -12,11 +12,31 @@ public class Category extends BaseEntity {
 
 	private static final long serialVersionUID = -6305965741752477104L;
 	@Column(length = 50)
-	private String name;
+	private String name;//
 	@Column(name = "parent_id")
 	private Long parentId;// parentId不为null，为二级类别
+	@Column(name = "parent_name")
+	private String parentName;
 	@Column(name = "order_no")
 	private Integer orderNo;// 序号
+	@Column(name = "product_code")
+	private String productCode;
+
+	public String getParentName() {
+		return parentName;
+	}
+
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
+	}
+
+	public String getProductCode() {
+		return productCode;
+	}
+
+	public void setProductCode(String productCode) {
+		this.productCode = productCode;
+	}
 
 	public Integer getOrderNo() {
 		return orderNo;
