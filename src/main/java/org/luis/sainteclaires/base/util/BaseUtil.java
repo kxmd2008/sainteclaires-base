@@ -12,9 +12,10 @@ public class BaseUtil {
 	private static final Map<Long, List<Category>> cates = new ConcurrentHashMap<Long, List<Category>>();
 	private static List<Category> parents;
 
+	@SuppressWarnings("unchecked")
 	public static List<Category> getParentCates() {
 		if (parents == null) {
-			parents = ServiceFactory.getCategoryService().findBySql(
+			parents = (List<Category>) ServiceFactory.getCategoryService().findByHql(
 					"from Category where parentId is null");
 		}
 		return parents;
