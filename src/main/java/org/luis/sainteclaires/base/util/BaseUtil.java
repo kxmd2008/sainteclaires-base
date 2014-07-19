@@ -38,5 +38,9 @@ public class BaseUtil {
 	public static void clearSubCats(Long pid){
 		cates.remove(pid);
 	}
+	
+	public static void clearAllSubCats(){
+		cates.clear();
+	}
 
 }
