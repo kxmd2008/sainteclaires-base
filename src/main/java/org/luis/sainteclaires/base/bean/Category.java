@@ -19,7 +19,7 @@ public class Category extends BaseEntity {
 	@Column(name = "parent_id")
 	private Long parentId;// parentId不为null，为二级类别
 	@Column(name = "parent_name")
-	private String parentName;
+	private String parentName = "";
 	@Column(name = "order_no")
 	private Integer orderNo;// 序号
 	@Column(name = "product_code")

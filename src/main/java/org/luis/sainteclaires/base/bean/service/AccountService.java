@@ -62,13 +62,13 @@ public class AccountService {
 	 * @param password
 	 * @return
 	 */
-	public SimpleMessage login(String loginName, String password) {
-		SimpleMessage sm = new SimpleMessage();
+	public SimpleMessage<?> login(String loginName, String password) {
+		SimpleMessage<?> sm = new SimpleMessage<Object>();
 		FilterAttributes fa = FilterAttributes.blank()
 				.add("loginName", loginName).add("password", password);
 		Account account = ServiceFactory.getAccountService()
 				.findOneByFilter(fa);
-		if (account != null) {
+		if (account == null) {
 			SimpleMessageHead head = new SimpleMessageHead("1001",
 					"error.msg.account.pwd.wrong");
 			sm.setHead(head);

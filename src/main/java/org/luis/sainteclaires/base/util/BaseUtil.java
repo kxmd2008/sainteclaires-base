@@ -1,11 +1,15 @@
 package org.luis.sainteclaires.base.util;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.luis.basic.domain.FilterAttributes;
+import org.luis.basic.util.SpringContextFactory;
 import org.luis.sainteclaires.base.bean.Category;
+import org.luis.sainteclaires.base.bean.service.AccountService;
 import org.luis.sainteclaires.base.bean.service.ServiceFactory;
 
 public class BaseUtil {
@@ -15,8 +19,8 @@ public class BaseUtil {
 	@SuppressWarnings("unchecked")
 	public static List<Category> getParentCates() {
 		if (parents == null) {
-			parents = (List<Category>) ServiceFactory.getCategoryService().findByHql(
-					"from Category where parentId is null");
+			parents = (List<Category>) ServiceFactory.getCategoryService()
+					.findByHql("from Category where parentId is null");
 		}
 		return parents;
 	}
@@ -30,17 +34,41 @@ public class BaseUtil {
 		}
 		return cates.get(pid);
 	}
-	
-	public static void clearParentCats(){
+
+	@SuppressWarnings("unchecked")
+	public static Map<Long, List<Category>> getSubCatsMap() {
+		Map<Long, List<Category>> subcatMap = new HashMap<Long, List<Category>>();
+		List<Category> list = (List<Category>) ServiceFactory
+				.getCategoryService().findByHql(
+						"from Category where parentId is not null");
+		for (Category cat : list) {
+			if(subcatMap.get(cat.getParentId()) == null){
+				subcatMap.put(cat.getParentId(), new ArrayList<Category>());
+			}
+			subcatMap.get(cat.getParentId()).add(cat);
+		}
+		return subcatMap;
+	}
+
+	public static void clearParentCats() {
 		parents = null;
 	}
-	
-	public static void clearSubCats(Long pid){
+
+	public static void clearSubCats(Long pid) {
 		cates.remove(pid);
 	}
-	
-	public static void clearAllSubCats(){
+
+	public static void clearAllSubCats() {
 		cates.clear();
+	}
+	
+	private static AccountService accountService;
+	
+	public static AccountService getAccountService(){
+		if(accountService == null){
+			accountService = SpringContextFactory.getSpringBean(AccountService.class);
+		}
+		return accountService;
 	}
 
 }

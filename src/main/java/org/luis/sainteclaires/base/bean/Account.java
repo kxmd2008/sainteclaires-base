@@ -24,7 +24,7 @@ public class Account extends BaseEntity {
 	private String phone;// 手机
 	@Column(length = 10)
 	private String post;// 邮编
-	@Column(length = 2)
+	@Column(length = 10)
 	private String type = TYPE_CUSTOMER;// 帐号类型
 
 	public String getType() {
