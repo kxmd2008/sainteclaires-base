@@ -4,6 +4,8 @@ import org.apache.log4j.Logger;
 import org.luis.basic.domain.FilterAttributes;
 import org.luis.basic.rest.model.SimpleMessage;
 import org.luis.basic.rest.model.SimpleMessageHead;
+import org.luis.basic.util.Encrypt;
+import org.luis.basic.util.StringUtils;
 import org.luis.sainteclaires.base.bean.Account;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +19,8 @@ public class AccountService {
 	 * @param account
 	 * @return
 	 */
-	public SimpleMessage registion(Account account) {
-		SimpleMessage sm = new SimpleMessage();
+	public SimpleMessage<?> registion(Account account) {
+		SimpleMessage<?> sm = new SimpleMessage<Object>();
 		try {
 			boolean b = ServiceFactory.getAccountService().save(account);
 			if(!b){
@@ -40,8 +42,8 @@ public class AccountService {
 	 * @param loginName
 	 * @return
 	 */
-	public SimpleMessage checkLoginName(String loginName) {
-		SimpleMessage sm = new SimpleMessage();
+	public SimpleMessage<?> checkLoginName(String loginName) {
+		SimpleMessage<?> sm = new SimpleMessage<Object>();
 		FilterAttributes fa = FilterAttributes.blank().add("loginName",
 				loginName);
 		Account account = ServiceFactory.getAccountService()
@@ -62,8 +64,14 @@ public class AccountService {
 	 * @param password
 	 * @return
 	 */
-	public SimpleMessage<?> login(String loginName, String password) {
-		SimpleMessage<?> sm = new SimpleMessage<Object>();
+	public SimpleMessage<Account> login(String loginName, String password) {
+		SimpleMessage<Account> sm = new SimpleMessage<Account>();
+		if(StringUtils.isNullOrBlank(loginName) || StringUtils.isNullOrBlank(password)){
+			sm.getHead().setRep_code("1002");
+			sm.getHead().setRep_message("error.msg.account.pwd.empty");
+			return sm;
+		}
+		password = Encrypt.init(password).md5().genrate();
 		FilterAttributes fa = FilterAttributes.blank()
 				.add("loginName", loginName).add("password", password);
 		Account account = ServiceFactory.getAccountService()
@@ -74,6 +82,7 @@ public class AccountService {
 			sm.setHead(head);
 		} else {
 			sm.setHead(SimpleMessageHead.OK);
+			sm.setItem(account);
 		}
 		return sm;
 	}
