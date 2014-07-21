@@ -11,7 +11,7 @@ import javax.persistence.Transient;
 import org.luis.basic.domain.BaseEntity;
 
 @Entity
-@Table(name = "order")
+@Table(name = "cust_order")
 public class Order extends BaseEntity {
 	/**
 	 * 
