@@ -10,7 +10,7 @@ import org.luis.sainteclaires.base.bean.OrderItem;
 import org.luis.sainteclaires.base.bean.Picture;
 import org.luis.sainteclaires.base.bean.Product;
 import org.luis.sainteclaires.base.bean.ProductShot;
-import org.luis.sainteclaires.base.bean.ProductSize;
+import org.luis.sainteclaires.base.bean.Size;
 import org.luis.sainteclaires.base.bean.ShoppingBag;
 
 
@@ -79,11 +79,11 @@ public class ServiceFactory {
 		return productService;
 	}
 
-	private static IGenericService<ProductSize> productSizeService;
+	private static IGenericService<Size> productSizeService;
 
-	public static IGenericService<ProductSize> getProductSizeService() {
+	public static IGenericService<Size> getProductSizeService() {
 		if (productSizeService == null) {
-			productSizeService = GenericServiceBuilder.build(ProductSize.class);
+			productSizeService = GenericServiceBuilder.build(Size.class);
 		}
 		return productSizeService;
 	}

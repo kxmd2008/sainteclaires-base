@@ -7,7 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.luis.basic.domain.BaseEntity;
@@ -15,18 +15,44 @@ import org.luis.basic.domain.BaseEntity;
 @Entity
 @Table(name = "product")
 public class Product extends BaseEntity {
-	
+
 	private static final long serialVersionUID = -4680639268444282632L;
-	@Column(length=50)
+	@Column(length = 50)
 	private String name;// 产品名称
-	@Column(name="category_id")
+	@Column(length = 200)
+	private String description;// 产品描述
+	@Column(name = "category_id")
 	private Long categoryId;
-	@Column(length=50, name = "product_no")
+	@Column(name = "category_name")
+	private String categoryName;
+	@Column(length = 50, name = "product_no")
 	private String productNo;// 产品编号
-	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<ProductSize> prodSizes;// 尺码
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<ProductSize> psizes;// 尺码
 	private BigDecimal price;// 产品价格
 	private Integer num;// 产品库存
+	// 浏览量
+	private Integer viewNum;
+	private String pics;
+
+	// @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	// private List<Picture> pics;
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Integer getViewNum() {
+		return viewNum;
+	}
+
+	public void setViewNum(Integer viewNum) {
+		this.viewNum = viewNum;
+	}
 
 	public String getName() {
 		return name;
@@ -44,12 +70,20 @@ public class Product extends BaseEntity {
 		this.productNo = productNo;
 	}
 
-	public List<ProductSize> getProdSizes() {
-		return prodSizes;
+	public Long getCategoryId() {
+		return categoryId;
 	}
 
-	public void setProdSizes(List<ProductSize> prodSizes) {
-		this.prodSizes = prodSizes;
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public List<ProductSize> getPsizes() {
+		return psizes;
+	}
+
+	public void setPsizes(List<ProductSize> psizes) {
+		this.psizes = psizes;
 	}
 
 	public BigDecimal getPrice() {
@@ -66,6 +100,22 @@ public class Product extends BaseEntity {
 
 	public void setNum(Integer num) {
 		this.num = num;
+	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	public String getPics() {
+		return pics;
+	}
+
+	public void setPics(String pics) {
+		this.pics = pics;
 	}
 
 }

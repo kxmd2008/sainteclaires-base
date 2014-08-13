@@ -1,48 +1,41 @@
 package org.luis.sainteclaires.base.bean;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.luis.basic.domain.BaseEntity;
 
 /**
- * 尺码
- * 
- * @author guoliang.li
- * 
+ * 产品尺码，库存数量
+ * @author Guoliang.Li
  */
 @Entity
 @Table(name = "product_size")
 public class ProductSize extends BaseEntity {
-	private static final long serialVersionUID = -6084029923513319887L;
-	@Column(length=20)
+	
+	private static final long serialVersionUID = -8785503740676125616L;
+	@Column(length=30)
 	private String size;
-	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "prodSizes")
-	@JoinTable(name = "product_productsize", joinColumns = { @JoinColumn(name = "size_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "product_id", referencedColumnName = "id") })
-	private List<Product> products;
+	@Column(name = "product_id")
+	private Long productId;
+	// 库存数量
+	private Integer num;
 
-	public String getSize() {
-		return size;
+	public Long getProductId() {
+		return productId;
 	}
 
-	public void setSize(String size) {
-		this.size = size;
+	public void setProductId(Long productId) {
+		this.productId = productId;
 	}
 
-	public List<Product> getProducts() {
-		return products;
+	public Integer getNum() {
+		return num;
 	}
 
-	public void setProducts(List<Product> products) {
-		this.products = products;
+	public void setNum(Integer num) {
+		this.num = num;
 	}
 
 }
