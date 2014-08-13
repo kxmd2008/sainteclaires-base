@@ -35,9 +35,18 @@ public class Product extends BaseEntity {
 	private Integer viewNum;
 	private String pics;
 	private Integer status = 0;
+	private Boolean isNew = true;
 
 	// @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	// private List<Picture> pics;
+
+	public Boolean getIsNew() {
+		return isNew;
+	}
+
+	public void setIsNew(Boolean isNew) {
+		this.isNew = isNew;
+	}
 
 	public String getDescription() {
 		return description;

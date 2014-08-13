@@ -18,8 +18,8 @@ public class ProductVo implements Serializable {
 	private Integer meses18;// 产品库存
 	private Integer meses24;// 产品库存
 	private String pics;
-	private Boolean isnew;
-	private String desc;
+	private Boolean isNew;
+	private String description;
 
 	public Long getId() {
 		return id;
@@ -125,20 +125,20 @@ public class ProductVo implements Serializable {
 		this.pics = pics;
 	}
 
-	public Boolean getIsnew() {
-		return isnew;
+	public Boolean getIsNew() {
+		return isNew;
 	}
 
-	public void setIsnew(Boolean isnew) {
-		this.isnew = isnew;
+	public void setIsNew(Boolean isNew) {
+		this.isNew = isNew;
 	}
 
-	public String getDesc() {
-		return desc;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }

@@ -16,9 +16,30 @@ import org.springframework.transaction.annotation.Transactional;
 public class ProductVoService {
 	
 	public ProductVo get(Long id){
-		
-		
-		return null;
+		Product product = ServiceFactory.getProductService().get(id);
+		ProductVo vo = new ProductVo();
+		try {
+			BeanUtils.copyProperties(vo, product);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		FilterAttributes fa = FilterAttributes.blank().add("productId",id);
+		List<ProductSize> pz = ServiceFactory.getProductSizeService()
+				.findByAttributes(fa);
+		for (ProductSize productSize : pz) {
+			if (productSize.getSize().equals(Size.MESES06.name())) {
+				vo.setMeses06(productSize.getNum());
+			} else if (productSize.getSize().equals(Size.MESES09.name())) {
+				vo.setMeses09(productSize.getNum());
+			} else if (productSize.getSize().equals(Size.MESES12.name())) {
+				vo.setMeses12(productSize.getNum());
+			} else if (productSize.getSize().equals(Size.MESES18.name())) {
+				vo.setMeses18(productSize.getNum());
+			} else if (productSize.getSize().equals(Size.MESES24.name())) {
+				vo.setMeses24(productSize.getNum());
+			}
+		}
+		return vo;
 	}
 
 	public boolean save(ProductVo vo) {
@@ -38,7 +59,7 @@ public class ProductVoService {
 		}
 		
 		//save
-		if(vo.getId()  == null){
+		if(vo.getId()  == null || pz.isEmpty()){
 			Size[] sizes = Size.values();
 			for (Size size : sizes) {
 				ProductSize ps = new ProductSize();
