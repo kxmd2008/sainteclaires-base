@@ -2,22 +2,32 @@ package org.luis.sainteclaires.base.bean.vo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 
 public class ProductVo implements Serializable {
 	private static final long serialVersionUID = -8880563754187771336L;
+	private Long id;
 	private String name;// 产品名称
 	private Long categoryId;
 	private String categoryName;
 	private String productNo;// 产品编号
 	private BigDecimal price;// 产品价格
 	private Integer num;// 产品库存
-	private Integer xnum;// 产品库存
-	private Integer x1num;// 产品库存
-	private Integer x2num;// 产品库存
-	private List<String> pics;
+	private Integer meses06;// 产品库存
+	private Integer meses09;// 产品库存
+	private Integer meses12;// 产品库存
+	private Integer meses18;// 产品库存
+	private Integer meses24;// 产品库存
+	private String pics;
 	private Boolean isnew;
 	private String desc;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -67,35 +77,51 @@ public class ProductVo implements Serializable {
 		this.num = num;
 	}
 
-	public Integer getXnum() {
-		return xnum;
+	public Integer getMeses06() {
+		return meses06;
 	}
 
-	public void setXnum(Integer xnum) {
-		this.xnum = xnum;
+	public void setMeses06(Integer meses06) {
+		this.meses06 = meses06;
 	}
 
-	public Integer getX1num() {
-		return x1num;
+	public Integer getMeses09() {
+		return meses09;
 	}
 
-	public void setX1num(Integer x1num) {
-		this.x1num = x1num;
+	public void setMeses09(Integer meses09) {
+		this.meses09 = meses09;
 	}
 
-	public Integer getX2num() {
-		return x2num;
+	public Integer getMeses12() {
+		return meses12;
 	}
 
-	public void setX2num(Integer x2num) {
-		this.x2num = x2num;
+	public void setMeses12(Integer meses12) {
+		this.meses12 = meses12;
 	}
 
-	public List<String> getPics() {
+	public Integer getMeses18() {
+		return meses18;
+	}
+
+	public void setMeses18(Integer meses18) {
+		this.meses18 = meses18;
+	}
+
+	public Integer getMeses24() {
+		return meses24;
+	}
+
+	public void setMeses24(Integer meses24) {
+		this.meses24 = meses24;
+	}
+
+	public String getPics() {
 		return pics;
 	}
 
-	public void setPics(List<String> pics) {
+	public void setPics(String pics) {
 		this.pics = pics;
 	}
 

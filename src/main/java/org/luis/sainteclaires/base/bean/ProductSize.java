@@ -8,14 +8,15 @@ import org.luis.basic.domain.BaseEntity;
 
 /**
  * 产品尺码，库存数量
+ * 
  * @author Guoliang.Li
  */
 @Entity
 @Table(name = "product_size")
 public class ProductSize extends BaseEntity {
-	
+
 	private static final long serialVersionUID = -8785503740676125616L;
-	@Column(length=30)
+	@Column(length = 30)
 	private String size;
 	@Column(name = "product_id")
 	private Long productId;
@@ -36,6 +37,14 @@ public class ProductSize extends BaseEntity {
 
 	public void setNum(Integer num) {
 		this.num = num;
+	}
+
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
 	}
 
 }

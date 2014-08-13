@@ -34,12 +34,21 @@ public class Product extends BaseEntity {
 	// 浏览量
 	private Integer viewNum;
 	private String pics;
+	private Integer status = 0;
 
 	// @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	// private List<Picture> pics;
 
 	public String getDescription() {
 		return description;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 
 	public void setDescription(String description) {
