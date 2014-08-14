@@ -1,13 +1,16 @@
 package org.luis.sainteclaires.base.bean.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.luis.basic.domain.FilterAttributes;
+import org.luis.basic.util.StringUtils;
 import org.luis.sainteclaires.base.bean.Product;
 import org.luis.sainteclaires.base.bean.ProductSize;
 import org.luis.sainteclaires.base.bean.Size;
 import org.luis.sainteclaires.base.bean.vo.ProductVo;
+import org.luis.sainteclaires.base.util.BaseUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,6 +41,14 @@ public class ProductVoService {
 			} else if (productSize.getSize().equals(Size.MESES24.name())) {
 				vo.setMeses24(productSize.getNum());
 			}
+		}
+		if(!StringUtils.isNullOrBlank(product.getPics())){
+			String[] pics = StringUtils.split(product.getPics(), ",");
+			List<String> list = new ArrayList<String>();
+			for (String pic : pics) {
+				list.add(BaseUtil.PRODUCT_PATH + pic);
+			}
+			vo.setPicList(list);
 		}
 		return vo;
 	}

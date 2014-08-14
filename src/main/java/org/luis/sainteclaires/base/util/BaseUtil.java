@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.luis.basic.domain.FilterAttributes;
+import org.luis.basic.util.BasicUtil;
 import org.luis.basic.util.SpringContextFactory;
 import org.luis.sainteclaires.base.bean.Category;
 import org.luis.sainteclaires.base.bean.service.AccountService;
@@ -70,5 +71,11 @@ public class BaseUtil {
 		}
 		return accountService;
 	}
+	
+	public static String getProductPath(){
+		return BasicUtil.getWebAppPath() + PRODUCT_PATH;
+	}
+	
+	public static final String PRODUCT_PATH = "product/imgs/";
 
 }

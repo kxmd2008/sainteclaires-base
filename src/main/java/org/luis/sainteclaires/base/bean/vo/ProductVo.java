@@ -2,6 +2,7 @@ package org.luis.sainteclaires.base.bean.vo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 public class ProductVo implements Serializable {
 	private static final long serialVersionUID = -8880563754187771336L;
@@ -18,8 +19,17 @@ public class ProductVo implements Serializable {
 	private Integer meses18;// 产品库存
 	private Integer meses24;// 产品库存
 	private String pics;
+	private List<String> picList;
 	private Boolean isNew;
 	private String description;
+
+	public List<String> getPicList() {
+		return picList;
+	}
+
+	public void setPicList(List<String> picList) {
+		this.picList = picList;
+	}
 
 	public Long getId() {
 		return id;
