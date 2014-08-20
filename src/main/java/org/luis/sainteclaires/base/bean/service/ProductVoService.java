@@ -43,7 +43,7 @@ public class ProductVoService {
 			}
 		}
 		if(!StringUtils.isNullOrBlank(product.getPics())){
-			String[] pics = StringUtils.split(product.getPics(), ",");
+			String[] pics = product.getPics().split(",");
 			List<String> list = new ArrayList<String>();
 			for (String pic : pics) {
 				list.add(BaseUtil.PRODUCT_PATH + pic);
