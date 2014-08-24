@@ -11,8 +11,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class BaseRest {
 	
 	@RequestMapping(value = "index", method = RequestMethod.GET)
-	public String index(String loginName, String password) {
+	public String index() {
 		return "common/index";
+	}
+	
+	@RequestMapping(value = "detail", method = RequestMethod.GET)
+	public String detail() {
+		return "common/detail";
 	}
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
