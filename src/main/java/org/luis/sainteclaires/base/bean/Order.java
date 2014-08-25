@@ -14,6 +14,23 @@ import org.luis.basic.domain.BaseEntity;
 @Table(name = "cust_order")
 public class Order extends BaseEntity {
 	/**
+	 * 待付款
+	 */
+	public static final Integer STATUS_UNPAY = 0;
+	/**
+	 * 已付款未处理
+	 */
+	public static final Integer STATUS_UNDEAL = 1;
+	/**
+	 * 已发送
+	 */
+	public static final Integer STATUS_SENDED = 2;
+	/**
+	 * 已收货
+	 */
+	public static final Integer STATUS_DELIVERIED = 3;
+	
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6624377395219783412L;
