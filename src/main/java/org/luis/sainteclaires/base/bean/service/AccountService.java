@@ -95,4 +95,34 @@ public class AccountService {
 				.findOneByFilter(fa);
 		return account;
 	}
+	
+	public SimpleMessage<?> changePassword(Account account, String oldPwd, String newPwd,
+			String confirmPwd){
+		SimpleMessage<?> sm = new SimpleMessage<Object>();
+		if(StringUtils.isNullOrBlank(newPwd)){
+			sm.getHead().setRep_code("1010");
+			sm.getHead().setRep_message("新密码不能为空");
+			return sm;
+		}
+		if(StringUtils.isNullOrBlank(confirmPwd)){
+			sm.getHead().setRep_code("1010");
+			sm.getHead().setRep_message("确认密码不能为空");
+			return sm;
+		}
+		if(!newPwd.equals(confirmPwd)){
+			sm.getHead().setRep_code("1010");
+			sm.getHead().setRep_message("新密码和确认密码不同");
+			return sm;
+		}
+		String md5OldPwd = Encrypt.init(oldPwd).md5().genrate();
+		if(account.getPassword().equals(md5OldPwd)){
+			sm.getHead().setRep_code("1010");
+			sm.getHead().setRep_message("旧密码错误");
+			return sm;
+		}
+		String md5NewPwd = Encrypt.init(newPwd).md5().genrate();
+		account.setPassword(md5NewPwd);
+		ServiceFactory.getAccountService().update(account);
+		return sm;
+	}
 }
