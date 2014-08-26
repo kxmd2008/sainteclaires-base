@@ -5,17 +5,15 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.luis.basic.rest.model.SimpleMessage;
 import org.luis.basic.util.SpringContextFactory;
 import org.luis.sainteclaires.base.bean.Category;
+import org.luis.sainteclaires.base.bean.ProductVo;
 import org.luis.sainteclaires.base.bean.service.ProductVoService;
-import org.luis.sainteclaires.base.bean.vo.ProductVo;
 import org.luis.sainteclaires.base.util.BaseUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping

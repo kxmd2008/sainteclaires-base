@@ -1,9 +1,10 @@
-package org.luis.sainteclaires.base.bean.vo;
+package org.luis.sainteclaires.base.bean;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.luis.sainteclaires.base.bean.Category;
 import org.luis.sainteclaires.base.bean.ProductSize;
 
 public class ProductVo implements Serializable {
@@ -25,6 +26,15 @@ public class ProductVo implements Serializable {
 	private List<String> picList;
 	private Boolean isNew;
 	private String description;
+	private List<Category> categorys;
+
+	public List<Category> getCategorys() {
+		return categorys;
+	}
+
+	public void setCategorys(List<Category> categorys) {
+		this.categorys = categorys;
+	}
 
 	public List<ProductSize> getProductSize() {
 		return productSize;
