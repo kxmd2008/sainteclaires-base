@@ -49,20 +49,6 @@ public class BaseRest {
 		return "common/detail";
 	}
 	
-	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login(String loginName, String password) {
-		SimpleMessage sm = new SimpleMessage();
-
-		return "";
-	}
-
-	@RequestMapping(value = "logout", method = RequestMethod.POST)
-	public String logout(String loginName) {
-		SimpleMessage sm = new SimpleMessage();
-
-		return "";
-	}
-	
 	private ProductVoService productVoService = SpringContextFactory
 			.getSpringBean(ProductVoService.class);
 }
