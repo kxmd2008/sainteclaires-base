@@ -29,7 +29,7 @@ public class Order extends BaseEntity {
 	 * 已收货
 	 */
 	public static final Integer STATUS_DELIVERIED = 3;
-	
+
 	/**
 	 * 
 	 */
@@ -50,6 +50,17 @@ public class Order extends BaseEntity {
 	private Integer status;// 订单状态 0:待付款；1：已付款待处理；2：已发货；3：已收货
 	@Transient
 	private List<OrderItem> items;// 订单明细
+
+	@Column(length = 50, name = "cust_no")
+	private String custNo;
+
+	public String getCustNo() {
+		return custNo;
+	}
+
+	public void setCustNo(String custNo) {
+		this.custNo = custNo;
+	}
 
 	public String getOrderNo() {
 		return orderNo;

@@ -24,7 +24,7 @@ public class AccountService {
 		try {
 			boolean b = ServiceFactory.getAccountService().save(account);
 			if(!b){
-				sm.setHead(SimpleMessageHead.OK);
+				sm.getHead().setRep_code("101");;
 			}
 		} catch (Exception e) {
 			log.error("注册用户出错", e);
@@ -49,12 +49,9 @@ public class AccountService {
 		Account account = ServiceFactory.getAccountService()
 				.findOneByFilter(fa);
 		if (account != null) {
-			SimpleMessageHead head = new SimpleMessageHead("1001",
-					"error.msg.account.exist");
-			sm.setHead(head);
-		} else {
-			sm.setHead(SimpleMessageHead.OK);
-		}
+			sm.getHead().setRep_code("1001");
+			sm.getHead().setRep_message("error.msg.account.exist");
+		} 
 		return sm;
 	}
 
@@ -77,11 +74,9 @@ public class AccountService {
 		Account account = ServiceFactory.getAccountService()
 				.findOneByFilter(fa);
 		if (account == null) {
-			SimpleMessageHead head = new SimpleMessageHead("1001",
-					"error.msg.account.pwd.wrong");
-			sm.setHead(head);
+			sm.getHead().setRep_code("1001");
+			sm.getHead().setRep_message("error.msg.account.pwd.wrong");
 		} else {
-			sm.setHead(SimpleMessageHead.OK);
 			sm.setItem(account);
 		}
 		return sm;

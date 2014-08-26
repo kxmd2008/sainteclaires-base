@@ -18,6 +18,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(rollbackFor = { RuntimeException.class, Exception.class })
 public class ProductVoService {
 	
+	/**
+	 * 根据ID查询产品
+	 * @param id
+	 * @return
+	 */
 	public ProductVo get(Long id){
 		Product product = ServiceFactory.getProductService().get(id);
 		ProductVo vo = new ProductVo();
@@ -46,6 +51,11 @@ public class ProductVoService {
 		return vo;
 	}
 	
+	/**
+	 * 根据类别查询产品
+	 * @param cateId
+	 * @return
+	 */
 	public List<ProductVo> getByCateId(Long cateId){
 		FilterAttributes fa = FilterAttributes.blank().add("categoryId",cateId);
 		List<Product> products = ServiceFactory.getProductService().findByAttributes(fa);

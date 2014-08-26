@@ -14,6 +14,8 @@ public class OrderItem extends BaseEntity {
 	private static final long serialVersionUID = 7892163388246757549L;
 	@Column(length=50, name = "product_no")
 	private String productNo;// 购买产品
+	@Column(name = "order_id")
+	private Long orderId;// 购买产品
 	private int num;// 购买数量
 	private BigDecimal price;// 当时产品价格，如果没下单，下次进来应该是按最新的价格显示
 
