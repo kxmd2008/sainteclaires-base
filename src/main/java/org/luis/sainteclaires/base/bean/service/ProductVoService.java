@@ -42,15 +42,25 @@ public class ProductVoService {
 				vo.setMeses24(productSize.getNum());
 			}
 		}
-		if(!StringUtils.isNullOrBlank(product.getPics())){
-			String[] pics = product.getPics().split(",");
-			List<String> list = new ArrayList<String>();
-			for (String pic : pics) {
-				list.add(BaseUtil.PRODUCT_PATH + pic);
-			}
-			vo.setPicList(list);
-		}
+		parsePic(vo, product);
 		return vo;
+	}
+	
+	public List<ProductVo> getByCateId(Long cateId){
+		FilterAttributes fa = FilterAttributes.blank().add("categoryId",cateId);
+		List<Product> products = ServiceFactory.getProductService().findByAttributes(fa);
+		List<ProductVo> list = new ArrayList<ProductVo>();
+		try {
+			for (Product product : products) {
+				ProductVo vo = new ProductVo();
+				BeanUtils.copyProperties(vo, product);
+				parsePic(vo, product);
+				list.add(vo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	public boolean save(ProductVo vo) {
@@ -109,6 +119,17 @@ public class ProductVoService {
 			return vo.getMeses24();
 		}
 		return 0;
+	}
+	
+	private void parsePic(ProductVo vo, Product product){
+		if(!StringUtils.isNullOrBlank(product.getPics())){
+			String[] picArray = product.getPics().split(",");
+			List<String> pics = new ArrayList<String>();
+			for (String pic : picArray) {
+				pics.add(BaseUtil.PRODUCT_PATH + pic);
+			}
+			vo.setPicList(pics);
+		}
 	}
 	
 	public static void main(String[] args) {

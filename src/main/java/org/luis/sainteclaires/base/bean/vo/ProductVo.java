@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.luis.sainteclaires.base.bean.ProductSize;
+
 public class ProductVo implements Serializable {
 	private static final long serialVersionUID = -8880563754187771336L;
 	private Long id;
@@ -18,10 +20,19 @@ public class ProductVo implements Serializable {
 	private Integer meses12;// 产品库存
 	private Integer meses18;// 产品库存
 	private Integer meses24;// 产品库存
+	private List<ProductSize> productSize;
 	private String pics;
 	private List<String> picList;
 	private Boolean isNew;
 	private String description;
+
+	public List<ProductSize> getProductSize() {
+		return productSize;
+	}
+
+	public void setProductSize(List<ProductSize> productSize) {
+		this.productSize = productSize;
+	}
 
 	public List<String> getPicList() {
 		return picList;
