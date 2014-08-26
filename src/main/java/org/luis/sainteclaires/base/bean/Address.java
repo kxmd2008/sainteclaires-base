@@ -18,6 +18,16 @@ public class Address extends BaseEntity {
 	private String address;
 	@Column(length = 10)
 	private String post;// 邮编
+	@Column(length = 14) //电话号码
+	private String telphone;
+	
+	public String getTelphone() {
+		return telphone;
+	}
+
+	public void setTelphone(String telphone) {
+		this.telphone = telphone;
+	}
 
 	public String getLoginName() {
 		return loginName;
