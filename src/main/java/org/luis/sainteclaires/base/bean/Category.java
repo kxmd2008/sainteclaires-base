@@ -22,8 +22,6 @@ public class Category extends BaseEntity {
 	private String parentName = "";
 	@Column(name = "order_no")
 	private Integer orderNo;// 序号
-	@Column(name = "product_code")
-	private String productCode;
 
 	public String getParentName() {
 		return parentName;
@@ -31,14 +29,6 @@ public class Category extends BaseEntity {
 
 	public void setParentName(String parentName) {
 		this.parentName = parentName;
-	}
-
-	public String getProductCode() {
-		return productCode;
-	}
-
-	public void setProductCode(String productCode) {
-		this.productCode = productCode;
 	}
 
 	public Integer getOrderNo() {
