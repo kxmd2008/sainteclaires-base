@@ -43,7 +43,15 @@ public class BaseRest {
 	}
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public String detail() {
+	public String detail(HttpServletRequest req, ModelMap map) {
+		Long id = Long.valueOf(req.getParameter("id"));
+		ProductVo pv = productVoService.get(id);
+		map.put("product", pv);
+		
+		List<Category> parents = BaseUtil.getParentCates();
+		Map<Long, List<Category>> subcatMap = BaseUtil.getSubCatsMap();
+		map.put("parents", parents);
+		map.put("subcatMap", subcatMap);
 		return "common/detail";
 	}
 	
