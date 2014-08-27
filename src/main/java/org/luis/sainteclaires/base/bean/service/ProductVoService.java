@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.luis.basic.domain.FilterAttributes;
+import org.luis.basic.util.IbatisBuilder;
 import org.luis.basic.util.StringUtils;
 import org.luis.sainteclaires.base.bean.Product;
 import org.luis.sainteclaires.base.bean.ProductSize;
@@ -56,17 +57,19 @@ public class ProductVoService {
 	 * @param cateId
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public List<ProductVo> getByCateId(Long cateId){
-		FilterAttributes fa = FilterAttributes.blank().add("categoryId",cateId);
-		List<Product> products = ServiceFactory.getProductService().findByAttributes(fa);
-		List<ProductVo> list = new ArrayList<ProductVo>();
+//		FilterAttributes fa = FilterAttributes.blank().add("categoryId",cateId);
+//		List<Product> products = ServiceFactory.getProductService().findByAttributes(fa);
+		List<ProductVo> list = null;
 		try {
-			for (Product product : products) {
-				ProductVo vo = new ProductVo();
-				BeanUtils.copyProperties(vo, product);
-				parsePic(vo, product);
-				list.add(vo);
-			}
+//			for (Product product : products) {
+//				ProductVo vo = new ProductVo();
+//				BeanUtils.copyProperties(vo, product);
+//				parsePic(vo, product);
+//				list.add(vo);
+//			}
+			list = (List<ProductVo>) IbatisBuilder.queryForList("product.findProductByCateId", cateId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
