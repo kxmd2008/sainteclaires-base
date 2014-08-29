@@ -3,6 +3,7 @@ package org.luis.sainteclaires.base.bean;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -10,7 +11,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.luis.basic.domain.BaseEntity;
 
 @Entity
-@Table(name = "category", uniqueConstraints=@UniqueConstraint(columnNames="name"))
+@Table(name = "category", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 public class Category extends BaseEntity {
 
 	private static final long serialVersionUID = -6305965741752477104L;
@@ -22,6 +23,16 @@ public class Category extends BaseEntity {
 	private String parentName = "";
 	@Column(name = "order_no")
 	private Integer orderNo;// 序号
+	@Transient
+	private boolean selected;
+
+	public boolean isSelected() {
+		return selected;
+	}
+
+	public void setSelected(boolean selected) {
+		this.selected = selected;
+	}
 
 	public String getParentName() {
 		return parentName;
@@ -57,15 +68,14 @@ public class Category extends BaseEntity {
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(this.getId()).append(this.getName()).toHashCode();
+		return new HashCodeBuilder().append(this.getId())
+				.append(this.getName()).toHashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		Category cat = (Category)obj;
+		Category cat = (Category) obj;
 		return new EqualsBuilder().append(this.getId(), cat.getId()).isEquals();
 	}
-	
-	
 
 }
