@@ -24,7 +24,7 @@ public class Category extends BaseEntity {
 	@Column(name = "order_no")
 	private Integer orderNo;// 序号
 	@Transient
-	private boolean selected;
+	private boolean selected = false;
 
 	public boolean isSelected() {
 		return selected;
