@@ -5,6 +5,7 @@ import org.luis.basic.domain.IGenericService;
 import org.luis.sainteclaires.base.bean.Account;
 import org.luis.sainteclaires.base.bean.Address;
 import org.luis.sainteclaires.base.bean.Category;
+import org.luis.sainteclaires.base.bean.CategoryProduct;
 import org.luis.sainteclaires.base.bean.Order;
 import org.luis.sainteclaires.base.bean.OrderItem;
 import org.luis.sainteclaires.base.bean.Picture;
@@ -23,6 +24,15 @@ public class ServiceFactory {
 			accountService = GenericServiceBuilder.build(Account.class);
 		}
 		return accountService;
+	}
+	
+	private static IGenericService<CategoryProduct> cateProductService;
+
+	public static IGenericService<CategoryProduct> getCateProductService() {
+		if (cateProductService == null) {
+			cateProductService = GenericServiceBuilder.build(CategoryProduct.class);
+		}
+		return cateProductService;
 	}
 	
 	private static IGenericService<Address> addressService;

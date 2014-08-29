@@ -7,6 +7,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.luis.basic.domain.FilterAttributes;
 import org.luis.basic.util.IbatisBuilder;
 import org.luis.basic.util.StringUtils;
+import org.luis.sainteclaires.base.bean.Category;
 import org.luis.sainteclaires.base.bean.Product;
 import org.luis.sainteclaires.base.bean.ProductSize;
 import org.luis.sainteclaires.base.bean.ProductVo;
@@ -25,10 +26,11 @@ public class ProductVoService {
 	 * @return
 	 */
 	public ProductVo get(Long id){
-		Product product = ServiceFactory.getProductService().get(id);
 		ProductVo vo = new ProductVo();
 		try {
+			Product product = (Product)IbatisBuilder.queryForObject("product.findById", id);
 			BeanUtils.copyProperties(vo, product);
+			parsePic(vo, product);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -48,7 +50,12 @@ public class ProductVoService {
 				vo.setMeses24(productSize.getNum());
 			}
 		}
-		parsePic(vo, product);
+		String temp = "";
+		for (Category cate : vo.getCategorys()) {
+			temp += cate.getId() + ",";
+		}
+		temp.substring(0, temp.length() - 1);
+		vo.setCategoryId(temp);
 		return vo;
 	}
 	
@@ -84,6 +91,7 @@ public class ProductVoService {
 			e.printStackTrace();
 		}
 		boolean b = ServiceFactory.getProductService().save(product);
+		vo.setId(product.getId());
 		FilterAttributes fa = FilterAttributes.blank().add("productId",
 				product.getId());
 		List<ProductSize> pz = ServiceFactory.getProductSizeService()
@@ -147,6 +155,8 @@ public class ProductVoService {
 	
 	public static void main(String[] args) {
 		System.out.println("MESES06".equals(Size.MESES06.name()));
+		String s= "1234567";
+		System.out.println(s.substring(0, s.length() - 1));
 	}
 
 }

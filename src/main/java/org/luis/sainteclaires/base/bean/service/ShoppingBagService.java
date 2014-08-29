@@ -13,6 +13,7 @@ import org.luis.sainteclaires.base.bean.ShoppingBag;
 public class ShoppingBagService {
 	
 	public void save(ShoppingBag bag){
+		ServiceFactory.getShoppingBagService().save(bag);
 		
 	}
 }

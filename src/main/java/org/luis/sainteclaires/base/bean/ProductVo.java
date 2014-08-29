@@ -11,7 +11,7 @@ public class ProductVo implements Serializable {
 	private static final long serialVersionUID = -8880563754187771336L;
 	private Long id;
 	private String name;// 产品名称
-	private Long categoryId;
+	private String categoryId;
 	private String categoryName;
 	private String productNo;// 产品编号
 	private BigDecimal price;// 产品价格
@@ -68,11 +68,11 @@ public class ProductVo implements Serializable {
 		this.name = name;
 	}
 
-	public Long getCategoryId() {
+	public String getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(Long categoryId) {
+	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
 	}
 
