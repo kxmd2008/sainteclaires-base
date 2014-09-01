@@ -26,11 +26,10 @@ public class ProductVoService {
 	 * @return
 	 */
 	public ProductVo get(Long id){
-		ProductVo vo = new ProductVo();
+		ProductVo vo = null;
 		try {
-			Product product = (Product)IbatisBuilder.queryForObject("product.findById", id);
-			BeanUtils.copyProperties(vo, product);
-			parsePic(vo, product);
+			vo = (ProductVo)IbatisBuilder.queryForObject("product.findById", id);
+			parsePic(vo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -142,9 +141,9 @@ public class ProductVoService {
 		return 0;
 	}
 	
-	private void parsePic(ProductVo vo, Product product){
-		if(!StringUtils.isNullOrBlank(product.getPics())){
-			String[] picArray = product.getPics().split(",");
+	private void parsePic(ProductVo vo){
+		if(!StringUtils.isNullOrBlank(vo.getPics())){
+			String[] picArray = vo.getPics().split(",");
 			List<String> pics = new ArrayList<String>();
 			for (String pic : picArray) {
 				pics.add(BaseUtil.PRODUCT_PATH + pic);

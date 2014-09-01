@@ -1,7 +1,9 @@
 package org.luis.sainteclaires.base.rest;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -28,6 +30,15 @@ public class BaseRest {
 		return "common/index";
 	}
 	
+	@RequestMapping(value = "shop", method = RequestMethod.GET)
+	public String shop(HttpServletRequest req , ModelMap map) {
+		List<Category> parents = BaseUtil.getParentCates();
+		Map<Long, List<Category>> subcatMap = BaseUtil.getSubCatsMap();
+		map.put("parents", parents);
+		map.put("subcatMap", subcatMap);
+		return "common/shop";
+	}
+	
 	@RequestMapping(value = "products", method = RequestMethod.GET)
 	public String products(HttpServletRequest req , ModelMap map) {
 		Long subCateId = Long.valueOf(req.getParameter("subCateId"));
@@ -37,6 +48,23 @@ public class BaseRest {
 		
 		List<Category> parents = BaseUtil.getParentCates();
 		Map<Long, List<Category>> subcatMap = BaseUtil.getSubCatsMap();
+		Iterator<Entry<Long, List<Category>>> it = subcatMap.entrySet().iterator();
+		boolean isbreak = false;
+		Long parentCatId = null;
+		while(it.hasNext()){
+			Entry<Long, List<Category>> e = it.next();
+			for (Category category : e.getValue()) {
+				if(category.getId().equals(subCateId)){
+					isbreak = true;
+					parentCatId = e.getKey();
+					break;
+				}
+			}
+			if(isbreak){
+				break;
+			}
+		}
+		map.put("parentCatId", parentCatId);
 		map.put("parents", parents);
 		map.put("subcatMap", subcatMap);
 		return "common/products";
