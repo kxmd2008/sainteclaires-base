@@ -16,17 +16,26 @@ public class ProductVo implements Serializable {
 	private String productNo;// 产品编号
 	private BigDecimal price;// 产品价格
 	private Integer num;// 产品库存
-	private Integer meses06;// 产品库存
-	private Integer meses09;// 产品库存
-	private Integer meses12;// 产品库存
-	private Integer meses18;// 产品库存
-	private Integer meses24;// 产品库存
+	private Integer meses06 = 0;// 产品库存
+	private Integer meses09 = 0;// 产品库存
+	private Integer meses12 = 0;// 产品库存
+	private Integer meses18 = 0;// 产品库存
+	private Integer meses24 = 0;// 产品库存
 	private List<ProductSize> productSize;
 	private String pics;
 	private List<String> picList;
 	private Boolean isNew;
 	private String description;
 	private List<Category> categorys;
+	private List<Long> cateIds;
+
+	public List<Long> getCateIds() {
+		return cateIds;
+	}
+
+	public void setCateIds(List<Long> cateIds) {
+		this.cateIds = cateIds;
+	}
 
 	public List<Category> getCategorys() {
 		return categorys;

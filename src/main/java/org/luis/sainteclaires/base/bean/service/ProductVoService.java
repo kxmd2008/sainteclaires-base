@@ -49,12 +49,12 @@ public class ProductVoService {
 				vo.setMeses24(productSize.getNum());
 			}
 		}
-		String temp = "";
+		List<Long> cateIds = new ArrayList<Long>();
 		for (Category cate : vo.getCategorys()) {
-			temp += cate.getId() + ",";
+			cateIds.add(cate.getId());
 		}
-		temp.substring(0, temp.length() - 1);
-		vo.setCategoryId(temp);
+//		temp.substring(0, temp.length() - 1);
+		vo.setCateIds(cateIds);
 		return vo;
 	}
 	
