@@ -46,7 +46,29 @@ public class BaseRest {
 		map.put("products", list);
 		map.put("subCateId", subCateId);
 		
+		setModel(map);
+		setParentCateId(map, subCateId);
+		return "common/products";
+	}
+	
+	@RequestMapping(value = "detail", method = RequestMethod.GET)
+	public String detail(HttpServletRequest req, ModelMap map) {
+		Long id = Long.valueOf(req.getParameter("id"));
+		ProductVo pv = productVoService.get(id);
+		map.put("product", pv);
+		setModel(map);
+		setParentCateId(map, pv.getCategorys().get(0).getId());
+		return "common/detail";
+	}
+	
+	private void setModel(ModelMap map){
 		List<Category> parents = BaseUtil.getParentCates();
+		Map<Long, List<Category>> subcatMap = BaseUtil.getSubCatsMap();
+		map.put("parents", parents);
+		map.put("subcatMap", subcatMap);
+	}
+	
+	private void setParentCateId(ModelMap map, Long subCateId){
 		Map<Long, List<Category>> subcatMap = BaseUtil.getSubCatsMap();
 		Iterator<Entry<Long, List<Category>>> it = subcatMap.entrySet().iterator();
 		boolean isbreak = false;
@@ -65,22 +87,6 @@ public class BaseRest {
 			}
 		}
 		map.put("parentCatId", parentCatId);
-		map.put("parents", parents);
-		map.put("subcatMap", subcatMap);
-		return "common/products";
-	}
-	
-	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public String detail(HttpServletRequest req, ModelMap map) {
-		Long id = Long.valueOf(req.getParameter("id"));
-		ProductVo pv = productVoService.get(id);
-		map.put("product", pv);
-		
-		List<Category> parents = BaseUtil.getParentCates();
-		Map<Long, List<Category>> subcatMap = BaseUtil.getSubCatsMap();
-		map.put("parents", parents);
-		map.put("subcatMap", subcatMap);
-		return "common/detail";
 	}
 	
 	private ProductVoService productVoService = SpringContextFactory
