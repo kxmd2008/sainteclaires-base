@@ -22,6 +22,8 @@ public class AccountService {
 	public SimpleMessage<?> registion(Account account) {
 		SimpleMessage<?> sm = new SimpleMessage<Object>();
 		try {
+			String password = Encrypt.init(account.getPassword()).md5().genrate();
+			account.setPassword(password);
 			boolean b = ServiceFactory.getAccountService().save(account);
 			if(!b){
 				sm.getHead().setRep_code("101");;
