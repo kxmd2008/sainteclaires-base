@@ -61,6 +61,12 @@ public class BaseRest {
 		return "common/detail";
 	}
 	
+	@RequestMapping(value = "contacto", method = RequestMethod.GET)
+	public String contacto(HttpServletRequest req, ModelMap map) {
+		setModel(map);
+		return "common/contacto";
+	}
+	
 	private void setModel(ModelMap map){
 		List<Category> parents = BaseUtil.getParentCates();
 		Map<Long, List<Category>> subcatMap = BaseUtil.getSubCatsMap();
