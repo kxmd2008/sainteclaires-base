@@ -67,6 +67,12 @@ public class BaseRest {
 		return "common/contacto";
 	}
 	
+	@RequestMapping(value = "cart", method = RequestMethod.GET)
+	public String cart(HttpServletRequest req, ModelMap map) {
+		setModel(map);
+		return "common/shoppingbag";
+	}
+	
 	private void setModel(ModelMap map){
 		List<Category> parents = BaseUtil.getParentCates();
 		Map<Long, List<Category>> subcatMap = BaseUtil.getSubCatsMap();
