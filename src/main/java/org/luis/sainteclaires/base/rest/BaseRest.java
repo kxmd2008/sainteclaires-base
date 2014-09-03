@@ -7,15 +7,20 @@ import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.luis.basic.rest.model.SimpleMessage;
 import org.luis.basic.util.SpringContextFactory;
+import org.luis.sainteclaires.base.INameSpace;
 import org.luis.sainteclaires.base.bean.Category;
+import org.luis.sainteclaires.base.bean.ProductShot;
 import org.luis.sainteclaires.base.bean.ProductVo;
+import org.luis.sainteclaires.base.bean.ShoppingBag;
 import org.luis.sainteclaires.base.bean.service.ProductVoService;
 import org.luis.sainteclaires.base.util.BaseUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping
@@ -71,6 +76,22 @@ public class BaseRest {
 	public String cart(HttpServletRequest req, ModelMap map) {
 		setModel(map);
 		return "common/shoppingbag";
+	}
+	
+	@RequestMapping(value = "add2cart", method = RequestMethod.POST)
+	@ResponseBody
+	public SimpleMessage<ShoppingBag> addToCart(ProductShot ps, HttpServletRequest req, ModelMap map) {
+		ShoppingBag bag = (ShoppingBag) req.getSession().getAttribute(INameSpace.KEY_SESSION_CART);
+		if(bag == null){
+			bag = new ShoppingBag();
+			bag.setCustNo(BaseUtil.getSessionAccount(req).getLoginName());
+			bag.setTotalAmount(bag.getTotalAmount().add(ps.getPrice()));
+			BaseUtil.setSessionAttr(req, INameSpace.KEY_SESSION_CART, bag);
+		}
+		SimpleMessage<ShoppingBag> sm = new SimpleMessage<ShoppingBag>();
+		sm.setItem(bag);
+		setModel(map);
+		return sm;
 	}
 	
 	private void setModel(ModelMap map){

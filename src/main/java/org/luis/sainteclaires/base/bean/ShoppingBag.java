@@ -26,7 +26,7 @@ public class ShoppingBag extends BaseEntity {
 	@Column(length = 50, name = "session_id")
 	private String sessionId;
 	@Column(name = "total_amount")
-	private BigDecimal totalAmount;
+	private BigDecimal totalAmount = BigDecimal.ZERO;
 	private Long timestamp;
 
 	public BigDecimal getTotalAmount() {

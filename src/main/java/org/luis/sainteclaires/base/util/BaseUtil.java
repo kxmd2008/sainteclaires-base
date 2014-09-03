@@ -6,9 +6,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.luis.basic.domain.FilterAttributes;
 import org.luis.basic.util.BasicUtil;
 import org.luis.basic.util.SpringContextFactory;
+import org.luis.sainteclaires.base.INameSpace;
+import org.luis.sainteclaires.base.bean.Account;
 import org.luis.sainteclaires.base.bean.Category;
 import org.luis.sainteclaires.base.bean.service.AccountService;
 import org.luis.sainteclaires.base.bean.service.ServiceFactory;
@@ -61,6 +65,19 @@ public class BaseUtil {
 
 	public static void clearAllSubCats() {
 		cates.clear();
+	}
+	
+	public static void setSessionAttr(HttpServletRequest req, String key, Object value){
+		req.getSession().setAttribute(key, value);
+	}
+	
+	public static Object getSessionAttr(HttpServletRequest req, String key){
+		return req.getSession().getAttribute(key);
+	}
+	
+	public static Account getSessionAccount(HttpServletRequest req){
+		Account account = (Account) req.getSession().getAttribute(INameSpace.KEY_SESSION_CUSTOMER);
+		return account;
 	}
 	
 	private static AccountService accountService;
