@@ -78,6 +78,12 @@ public class BaseRest {
 		return "common/shoppingbag";
 	}
 	
+	@RequestMapping(value = "changes", method = RequestMethod.GET)
+	public String changes(HttpServletRequest req, ModelMap map) {
+		setModel(map);
+		return "common/changes";
+	}
+	
 	@RequestMapping(value = "add2cart", method = RequestMethod.POST)
 	@ResponseBody
 	public SimpleMessage<ShoppingBag> addToCart(ProductShot ps, HttpServletRequest req, ModelMap map) {
