@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.luis.basic.domain.BaseEntity;
 
 /**
@@ -21,7 +23,7 @@ public class ProductShot extends BaseEntity {
 	@Column(length = 50, name = "product_no")
 	private String productNo;
 	@Column(name = "product_id")
-	private String productId;
+	private Long productId;
 	private Integer number = Integer.valueOf(1);
 	private BigDecimal price;
 	@Column(name = "bag_id")
@@ -30,6 +32,14 @@ public class ProductShot extends BaseEntity {
 	private String productName;
 	@Transient
 	private String pic;
+
+	public Long getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Long productId) {
+		this.productId = productId;
+	}
 
 	public String getProductName() {
 		return productName;
@@ -77,6 +87,20 @@ public class ProductShot extends BaseEntity {
 
 	public void setNumber(Integer number) {
 		this.number = number;
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(this.getPrice())
+				.append(this.getNumber()).append(this.getProductId())
+				.toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		ProductShot shot = (ProductShot) obj;
+		return new EqualsBuilder().append(this.productId, shot.getProductId())
+				.isEquals();
 	}
 
 }

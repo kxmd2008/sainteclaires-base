@@ -1,6 +1,7 @@
 package org.luis.sainteclaires.base.bean;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -18,7 +19,7 @@ import org.luis.basic.domain.BaseEntity;
 public class ShoppingBag extends BaseEntity {
 	private static final long serialVersionUID = 7364592180210908494L;
 	@Transient
-	private List<ProductShot> productShots;
+	private List<ProductShot> productShots = new ArrayList<ProductShot>();
 	@Column(length = 50, name = "cust_no")
 	private String custNo;
 	@Column(length = 50)
