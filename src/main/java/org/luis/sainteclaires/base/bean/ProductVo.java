@@ -29,6 +29,15 @@ public class ProductVo implements Serializable {
 	private List<Category> categorys;
 	private List<Long> cateIds;
 	private String size;
+	private Integer count = 1;// 购买数量
+
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
+	}
 
 	public String getSize() {
 		return size;
