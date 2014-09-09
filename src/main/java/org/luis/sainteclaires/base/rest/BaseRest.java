@@ -26,6 +26,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping
 public class BaseRest {
 	
+	/**
+	 * 首页
+	 * @return
+	 */
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String index(ModelMap map) {
 		List<Category> parents = BaseUtil.getParentCates();
@@ -35,6 +39,10 @@ public class BaseRest {
 		return "common/index";
 	}
 	
+	/**
+	 * 产品购买
+	 * @return
+	 */
 	@RequestMapping(value = "shop", method = RequestMethod.GET)
 	public String shop(HttpServletRequest req , ModelMap map) {
 		List<Category> parents = BaseUtil.getParentCates();
@@ -44,6 +52,10 @@ public class BaseRest {
 		return "common/shop";
 	}
 	
+	/**
+	 * 产品查询
+	 * @return
+	 */
 	@RequestMapping(value = "products", method = RequestMethod.GET)
 	public String products(HttpServletRequest req , ModelMap map) {
 		Long subCateId = Long.valueOf(req.getParameter("subCateId"));
@@ -56,6 +68,10 @@ public class BaseRest {
 		return "common/products";
 	}
 	
+	/**
+	 * 产品详情
+	 * @return
+	 */
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
 	public String detail(HttpServletRequest req, ModelMap map) {
 		Long id = Long.valueOf(req.getParameter("id"));
@@ -66,22 +82,64 @@ public class BaseRest {
 		return "common/detail";
 	}
 	
+	/**
+	 * 联系我们
+	 * @return
+	 */
 	@RequestMapping(value = "contacto", method = RequestMethod.GET)
 	public String contacto(HttpServletRequest req, ModelMap map) {
 		setModel(map);
 		return "common/contacto";
 	}
 	
+	/**
+	 * 购物车
+	 * @return
+	 */
 	@RequestMapping(value = "cart", method = RequestMethod.GET)
 	public String cart(HttpServletRequest req, ModelMap map) {
 		setModel(map);
 		return "common/shoppingbag";
 	}
 	
+	/**
+	 * 退换货申请
+	 * @return
+	 */
 	@RequestMapping(value = "changes", method = RequestMethod.GET)
 	public String changes(HttpServletRequest req, ModelMap map) {
 		setModel(map);
 		return "common/changes";
+	}
+	
+	/**
+	 * 如何购买
+	 * @return
+	 */
+	@RequestMapping(value = "howtobuy", method = RequestMethod.GET)
+	public String howtobuy(HttpServletRequest req, ModelMap map){
+		setModel(map);
+		return "common/howtobuy";
+	}
+	
+	/**
+	 * 关于我们
+	 * @return
+	 */
+	@RequestMapping(value = "about", method = RequestMethod.GET)
+	public String about(HttpServletRequest req, ModelMap map){
+		setModel(map);
+		return "common/about";
+	}
+	
+	/**
+	 * 法律声明
+	 * @return
+	 */
+	@RequestMapping(value = "legal", method = RequestMethod.GET)
+	public String legal(HttpServletRequest req, ModelMap map){
+		setModel(map);
+		return "common/legal";
 	}
 	
 	@RequestMapping(value = "add2cart", method = RequestMethod.POST)
