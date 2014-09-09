@@ -34,6 +34,10 @@ public class ProductShot extends BaseEntity {
 	private String pic;
 	@Transient
 	private String size;
+	
+	public BigDecimal getSum() {
+		return price.multiply(BigDecimal.valueOf(number.longValue()));
+	}
 
 	public String getSize() {
 		return size;
