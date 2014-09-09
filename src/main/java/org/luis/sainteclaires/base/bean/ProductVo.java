@@ -28,6 +28,15 @@ public class ProductVo implements Serializable {
 	private String description;
 	private List<Category> categorys;
 	private List<Long> cateIds;
+	private String size;
+
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
+	}
 
 	public List<Long> getCateIds() {
 		return cateIds;

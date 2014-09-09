@@ -76,6 +76,12 @@ public class BaseRest {
 	public String detail(HttpServletRequest req, ModelMap map) {
 		Long id = Long.valueOf(req.getParameter("id"));
 		ProductVo pv = productVoService.get(id);
+		ShoppingBag bag = (ShoppingBag) req.getSession().getAttribute(INameSpace.KEY_SESSION_CART);
+		if(bag != null && !bag.getProductShots().isEmpty()){
+			ProductShot shot = bag.getProductShots().get(bag.getProductShots().size() - 1);
+			pv.setSize(shot.getSize());
+			pv.setNum(shot.getNumber());
+		}
 		map.put("product", pv);
 		setModel(map);
 		setParentCateId(map, pv.getCategorys().get(0).getId());

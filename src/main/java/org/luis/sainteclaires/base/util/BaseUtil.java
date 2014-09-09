@@ -15,6 +15,7 @@ import org.luis.sainteclaires.base.INameSpace;
 import org.luis.sainteclaires.base.bean.Account;
 import org.luis.sainteclaires.base.bean.Category;
 import org.luis.sainteclaires.base.bean.service.AccountService;
+import org.luis.sainteclaires.base.bean.service.ProductVoService;
 import org.luis.sainteclaires.base.bean.service.ServiceFactory;
 
 public class BaseUtil {
@@ -87,6 +88,15 @@ public class BaseUtil {
 			accountService = SpringContextFactory.getSpringBean(AccountService.class);
 		}
 		return accountService;
+	}
+	
+	private static ProductVoService productVoService;
+	
+	public static ProductVoService getProductVoService(){
+		if(productVoService == null){
+			productVoService = SpringContextFactory.getSpringBean(ProductVoService.class);
+		}
+		return productVoService;
 	}
 	
 	public static String getProductPath(){

@@ -32,6 +32,16 @@ public class ProductShot extends BaseEntity {
 	private String productName;
 	@Transient
 	private String pic;
+	@Transient
+	private String size;
+
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
+	}
 
 	public Long getProductId() {
 		return productId;
