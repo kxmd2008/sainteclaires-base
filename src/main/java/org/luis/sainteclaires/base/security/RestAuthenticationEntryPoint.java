@@ -19,15 +19,19 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
 			throws IOException, ServletException {
 		String targetUrl = null;
 		String url = request.getRequestURI();
-		if (url.endsWith("admin/login")) {
+		if (url.endsWith(".js") || url.endsWith(".css") || url.endsWith(".png")
+				|| url.endsWith(".jpg") || url.endsWith(".gif") || url.endsWith(".jpeg")) {
 			return;
 		}
-		if (url.indexOf("jsp/admin") != -1 || url.indexOf("admin") != -1) {
+		if (url.endsWith("auth/admin") || url.endsWith("login")) {
+			return;
+		}
+		if (url.indexOf("admin") != -1) {
 			// 未登录而访问后台受控资源时，跳转到后台登录页面
-			targetUrl = "/jsp/admin/login.jsp";
+			targetUrl = "/auth/admin";
 		} else {
 			// 未登录而访问前台受控资源时，跳转到前台登录页面
-			targetUrl = "/jsp/login.jsp";
+			targetUrl = "/login";
 		}
 		targetUrl = request.getContextPath() + targetUrl;
 		response.sendRedirect(targetUrl);

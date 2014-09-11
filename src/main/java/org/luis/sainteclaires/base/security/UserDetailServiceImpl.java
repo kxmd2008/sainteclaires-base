@@ -40,8 +40,6 @@ public class UserDetailServiceImpl implements UserDetailsService {
             } else {
             	user = new User("", "", true, true, true, true, getAuthorities("ANONYMITY"));  
             }
-            
-  
         } catch (Exception e) {  
             throw new UsernameNotFoundException("Error in retrieving user");  
         }  
