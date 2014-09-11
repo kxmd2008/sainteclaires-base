@@ -24,18 +24,17 @@ public class UserDetailServiceImpl implements UserDetailsService {
 		UserDetails user = null;  
         try {  
             // 搜索数据库以匹配用户登录名.  
-//            Account dbUser = accountService.getAccount(loginName);  
-            Account dbUser = new Account();
-            dbUser.setLoginName("admin");
-            dbUser.setPassword("admin");
-            dbUser.setType("ADMIN");
+            Account dbUser = accountService.getAccount(loginName);  
+//            Account dbUser = new Account();
+//            dbUser.setLoginName("admin");
+//            dbUser.setPassword("admin");
+//            dbUser.setType("ADMIN");
             // Populate the Spring User object with details from the dbUser  
             // Here we just pass the username, password, and access level  
             // getAuthorities() will translate the access level to the correct  
             // role type  
             if(dbUser != null){
-            	user = new User(dbUser.getLoginName(), dbUser.getPassword()  
-                        .toLowerCase(), true, true, true, true,  
+            	user = new User(dbUser.getLoginName(), dbUser.getPassword(), true, true, true, true,  
                         getAuthorities(dbUser.getType()));  
             } else {
             	user = new User("", "", true, true, true, true, getAuthorities("ANONYMITY"));  
