@@ -8,7 +8,7 @@ import org.luis.sainteclaires.base.bean.Account;
 import org.luis.sainteclaires.base.bean.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.GrantedAuthorityImpl;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -58,13 +58,13 @@ public class UserDetailServiceImpl implements UserDetailsService {
   
         // 如果参数access为1.则拥有ROLE_ADMIN权限  
         if (access.equalsIgnoreCase(Account.TYPE_ADMIN)) {  
-            authList.add(new GrantedAuthorityImpl("ROLE_ADMIN"));  
+            authList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));  
         } else if(access.equalsIgnoreCase(Account.TYPE_CUSTOMER)) {
         	  // 默认拥有ROLE_USER权限  
-        	authList.add(new GrantedAuthorityImpl("ROLE_USER")); 
+        	authList.add(new SimpleGrantedAuthority("ROLE_USER")); 
         } else {
         	//匿名用户,未登录
-        	authList.add(new GrantedAuthorityImpl("ROLE_ANONYMITY")); 
+        	authList.add(new SimpleGrantedAuthority("ROLE_ANONYMITY")); 
         }
         return authList;  
     }
