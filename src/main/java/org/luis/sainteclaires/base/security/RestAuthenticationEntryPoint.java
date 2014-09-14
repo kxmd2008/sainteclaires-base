@@ -26,7 +26,7 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
 		if (url.endsWith("auth/admin") || url.endsWith("login")) {
 			return;
 		}
-		if (url.indexOf("admin") != -1) {
+		if (url.indexOf("/auth/") != -1) {
 			// 未登录而访问后台受控资源时，跳转到后台登录页面
 			targetUrl = "/auth/admin";
 		} else {
