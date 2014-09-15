@@ -1,6 +1,8 @@
 package org.luis.sainteclaires.base.util;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -100,9 +102,15 @@ public class BaseUtil {
 	}
 	
 	public static String getProductPath(){
-		return BasicUtil.getWebAppPath() + PRODUCT_PATH;
+		return BasicUtil.getWebAppPath() + PRODUCT_PATH + getDatePath();
 	}
 	
-	public static final String PRODUCT_PATH = "product/imgs/";
+	public static final String PRODUCT_PATH = "product/";
+	
+	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/");
+	
+	public static String getDatePath(){
+		return sdf.format(new Date());
+	}
 
 }

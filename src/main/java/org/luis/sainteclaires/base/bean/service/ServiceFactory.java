@@ -115,5 +115,14 @@ public class ServiceFactory {
 		}
 		return shoppingBagService;
 	}
+	
+	private static IGenericService<CategoryProduct> categoryProductService;
+
+	public static IGenericService<CategoryProduct> getCategoryProductService() {
+		if (categoryProductService == null) {
+			categoryProductService = GenericServiceBuilder.build(CategoryProduct.class);
+		}
+		return categoryProductService;
+	}
 
 }
