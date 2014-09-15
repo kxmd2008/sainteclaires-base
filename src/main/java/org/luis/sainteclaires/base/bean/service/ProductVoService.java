@@ -99,16 +99,18 @@ public class ProductVoService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		if(product.getId() != null && product.getId().intValue() == 0){
+			product.setId(null);
+		}
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < vo.getPicList().size(); i++) {
-			sb.append(BaseUtil.getDatePath()).append(product.getPics());
+			sb.append(vo.getPicList().get(i));
 			if (i != vo.getPicList().size() - 1) {
 				sb.append(",");
 			}
 		}
 		product.setPics(sb.toString());
 		boolean b = ServiceFactory.getProductService().save(product);
-		vo.setId(product.getId());
 		FilterAttributes fa = FilterAttributes.blank().add("productId",
 				product.getId());
 		List<ProductSize> pz = ServiceFactory.getProductSizeService()
@@ -125,6 +127,7 @@ public class ProductVoService {
 				ps.setNum(getSizeNum(size.name(), vo));
 				ps.setProductId(product.getId());
 				ps.setSize(size.name());
+				ServiceFactory.getProductSizeService().save(ps);
 			}
 		} else {// update
 			for (ProductSize productSize : pz) {
@@ -177,7 +180,7 @@ public class ProductVoService {
 				ServiceFactory.getCateProductService().save(cp);
 			}
 		}
-
+		vo.setId(product.getId());
 		if (!b) {
 			throw new RuntimeException("save cat product error");
 		}
@@ -204,12 +207,27 @@ public class ProductVoService {
 			String[] picArray = vo.getPics().split(",");
 			List<String> pics = new ArrayList<String>();
 			for (String pic : picArray) {
-				pics.add(BaseUtil.PRODUCT_PATH + pic);
+				pics.add(BaseUtil.getProductPath2() + pic);
 			}
 			vo.setPicList(pics);
 		}
 	}
-
+	/**
+	 * 分页查找得到product信息
+	 * @param parameters
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<ProductVo> getProductByPage(Map<String,Integer> parameters){
+		List<ProductVo> vos = null;
+		try {
+			vos = (List<ProductVo>) IbatisBuilder.queryForList("product.findProductByPage",
+					parameters);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return vos;
+	}
 	public static void main(String[] args) {
 		System.out.println("MESES06".equals(Size.MESES06.name()));
 		String s = "1234567";
