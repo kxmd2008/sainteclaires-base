@@ -83,6 +83,10 @@ public class BaseUtil {
 		return account;
 	}
 	
+	public static String getLoginName(HttpServletRequest req){
+		return (String)req.getSession().getAttribute(INameSpace.KEY_SESSION_USERNAME);
+	}
+	
 	private static AccountService accountService;
 	
 	public static AccountService getAccountService(){
@@ -108,9 +112,14 @@ public class BaseUtil {
 	public static final String PRODUCT_PATH = "product/";
 	
 	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/");
+	private static SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
 	
 	public static String getDatePath(){
 		return sdf.format(new Date());
+	}
+	
+	public static String getCurrDate(){
+		return sdf2.format(new Date());
 	}
 
 }

@@ -81,7 +81,10 @@ public class BaseRest {
 			ProductShot shot = bag.getProductShots().get(bag.getProductShots().size() - 1);
 			pv.setSize(shot.getSize());
 			pv.setNum(shot.getNumber());
-		}
+			if(id.equals(shot.getProductId())){
+				map.put("addSucc", Boolean.TRUE);
+			}
+		} 
 		map.put("product", pv);
 		setModel(map);
 		setParentCateId(map, pv.getCategorys().get(0).getId());
@@ -154,7 +157,7 @@ public class BaseRest {
 		ShoppingBag bag = (ShoppingBag) req.getSession().getAttribute(INameSpace.KEY_SESSION_CART);
 		if(bag == null){
 			bag = new ShoppingBag();
-			bag.setCustNo(BaseUtil.getSessionAccount(req).getLoginName());
+			bag.setCustNo(BaseUtil.getLoginName(req));
 			bag.setTotalAmount(bag.getTotalAmount().add(ps.getPrice()));
 			BaseUtil.setSessionAttr(req, INameSpace.KEY_SESSION_CART, bag);
 		}
