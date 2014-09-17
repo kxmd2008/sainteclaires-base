@@ -27,8 +27,8 @@ public class Product extends BaseEntity {
 	private String categoryName;
 	@Column(length = 50, name = "product_no")
 	private String productNo;// 产品编号
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<ProductSize> psizes;// 尺码
+//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	private List<ProductSize> psizes;// 尺码
 	private BigDecimal price;// 产品价格
 	private Integer num;// 产品库存
 	// 浏览量
@@ -96,13 +96,13 @@ public class Product extends BaseEntity {
 		this.categoryId = categoryId;
 	}
 
-	public List<ProductSize> getPsizes() {
-		return psizes;
-	}
-
-	public void setPsizes(List<ProductSize> psizes) {
-		this.psizes = psizes;
-	}
+//	public List<ProductSize> getPsizes() {
+//		return psizes;
+//	}
+//
+//	public void setPsizes(List<ProductSize> psizes) {
+//		this.psizes = psizes;
+//	}
 
 	public BigDecimal getPrice() {
 		return price;

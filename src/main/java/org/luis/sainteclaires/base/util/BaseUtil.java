@@ -117,6 +117,10 @@ public class BaseUtil {
 	public static String getDatePath(){
 		return sdf.format(new Date());
 	}
+		
+	public static String getProductPath2(){
+		return PRODUCT_PATH + getDatePath();
+	}
 	
 	public static String getCurrDate(){
 		return sdf2.format(new Date());
