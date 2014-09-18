@@ -26,6 +26,26 @@ public class Account extends BaseEntity {
 	private String post;// 邮编
 	@Column(length = 10)
 	private String type = TYPE_CUSTOMER;// 帐号类型
+	@Column(length=30)
+	private String email;
+	@Column(name="address_id")
+	private Long addressId;
+	
+	public Long getAddressId() {
+		return addressId;
+	}
+
+	public void setAddressId(Long addressId) {
+		this.addressId = addressId;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getType() {
 		return type;

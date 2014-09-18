@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.luis.sainteclaires.base.bean.Account;
+import org.luis.sainteclaires.base.bean.service.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -19,6 +22,7 @@ public class MySavedRequestAwareAuthenticationSuccessHandler extends
 		SimpleUrlAuthenticationSuccessHandler {
 
 	private RequestCache requestCache = new HttpSessionRequestCache();
+	
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -27,6 +31,8 @@ public class MySavedRequestAwareAuthenticationSuccessHandler extends
         HttpSession session = request.getSession();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         session.setAttribute("userName", userDetails.getUsername());
+        Account dbUser = accountService.getAccount(userDetails.getUsername());  
+        session.setAttribute("custAccount", dbUser);
         if (savedRequest == null) {
             super.onAuthenticationSuccess(request, response, authentication);
             return;
@@ -50,5 +56,8 @@ public class MySavedRequestAwareAuthenticationSuccessHandler extends
     public void setRequestCache(RequestCache requestCache) {
         this.requestCache = requestCache;
     }
+    
+    @Autowired
+    private AccountService accountService;
 	
 }
