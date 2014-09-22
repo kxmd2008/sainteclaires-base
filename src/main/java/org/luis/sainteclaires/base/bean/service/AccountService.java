@@ -137,13 +137,31 @@ public class AccountService {
 	 * @param account
 	 * @return
 	 */
-	public boolean update(Account account){
-//		SimpleMessage<Account> sm = new SimpleMessage<Account>();
+	public SimpleMessage<?> updateAccount(Account account){
+		SimpleMessage<?> sm = new SimpleMessage<Object>();
+		if(StringUtils.isNullOrBlank(account.getCustName())){
+			sm.getHead().setRep_code("1010");
+			sm.getHead().setRep_message("姓名不能为空");
+			return sm;
+		}
+		if(StringUtils.isNullOrBlank(account.getEmail())){
+			sm.getHead().setRep_code("1010");
+			sm.getHead().setRep_message("电子邮件不能为空");
+			return sm;
+		}
+		if(StringUtils.isNullOrBlank(account.getPhone())){
+			sm.getHead().setRep_code("1010");
+			sm.getHead().setRep_message("电话号码不能为空");
+			return sm;
+		}
 		boolean flag = ServiceFactory.getAccountService().update(account);
-//		if(flag == true){
-//			sm.setItem(account);
-//		}
-//		return sm;
-		return flag ;
+		if(flag == false){
+			sm.getHead().setRep_code("1010");
+			sm.getHead().setRep_message("账户信息保存失败");
+		}
+		return sm ;
+	}
+	public boolean update(Account account){
+		return  ServiceFactory.getAccountService().update(account);
 	}
 }
