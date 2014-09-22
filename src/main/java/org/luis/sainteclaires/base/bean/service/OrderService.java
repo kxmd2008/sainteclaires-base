@@ -36,6 +36,7 @@ public class OrderService {
 			item.setPrice(shot.getPrice());
 			item.setProductId(shot.getProductId());
 			item.setOrderId(order.getId());
+			item.setSize(shot.getSize());
 			order.getItems().add(item);
 			ServiceFactory.getOrderDetailService().save(item);
 		}
