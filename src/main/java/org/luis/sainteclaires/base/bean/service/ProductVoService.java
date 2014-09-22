@@ -34,7 +34,7 @@ public class ProductVoService {
 		try {
 			vo = (ProductVo) IbatisBuilder.queryForObject("product.findById",
 					id);
-			parsePic(vo);
+			parsePic2(vo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -85,9 +85,13 @@ public class ProductVoService {
 			// }
 			list = (List<ProductVo>) IbatisBuilder.queryForList(
 					"product.findProductByCateId", cateId);
+			for (ProductVo vo : list) {
+				parsePic2(vo);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return list;
 	}
 
@@ -212,6 +216,18 @@ public class ProductVoService {
 			vo.setPicList(pics);
 		}
 	}
+	
+	private void parsePic2(ProductVo vo) {
+		if (!StringUtils.isNullOrBlank(vo.getPics())) {
+			String[] picArray = vo.getPics().split(",");
+			List<String> pics = new ArrayList<String>();
+			for (String pic : picArray) {
+				pics.add(pic);
+			}
+			vo.setPicList(pics);
+		}
+	}
+	
 	/**
 	 * 分页查找得到product信息
 	 * @param parameters

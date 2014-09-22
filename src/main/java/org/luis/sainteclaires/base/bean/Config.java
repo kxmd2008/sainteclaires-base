@@ -7,11 +7,11 @@ import javax.persistence.Table;
 import org.luis.basic.domain.BaseEntity;
 
 @Entity
-@Table(name = "account")
+@Table(name = "config")
 public class Config extends BaseEntity {
 
 	private static final long serialVersionUID = 6608743398739140605L;
-	@Column(length = 20)
+	@Column(name="ckey", length = 20)
 	private String key;
 	@Column(length = 20)
 	private String value;

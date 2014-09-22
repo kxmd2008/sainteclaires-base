@@ -19,12 +19,12 @@ public class OrderItem extends BaseEntity {
 	private Long orderId;// 购买产品
 	private int num;// 购买数量
 	private BigDecimal price;// 当时产品价格，如果没下单，下次进来应该是按最新的价格显示
+	@Column(name = "product_id")
 	private Long productId;
 	@Transient
 	private String productName;
 	@Transient
 	private String pic;
-	@Transient
 	private String size;
 
 	public Long getOrderId() {

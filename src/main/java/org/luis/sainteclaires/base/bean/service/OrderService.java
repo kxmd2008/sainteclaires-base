@@ -51,6 +51,12 @@ public class OrderService {
 		try {
 			list = (List<Order>) IbatisBuilder.queryForList(
 					"order.findUnpayOrders", userName);
+			for (Order order : list) {
+				for (OrderItem item : order.getItems()) {
+					String[] pics = item.getPic().split(",");
+					item.setPic(pics[0]);
+				}
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

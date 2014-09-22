@@ -95,7 +95,7 @@ public class BaseRest {
 	 * 联系我们
 	 * @return
 	 */
-	@RequestMapping(value = "contacto", method = RequestMethod.GET)
+	@RequestMapping(value = "contact", method = RequestMethod.GET)
 	public String contacto(HttpServletRequest req, ModelMap map) {
 		setModel(map);
 		return "common/contacto";

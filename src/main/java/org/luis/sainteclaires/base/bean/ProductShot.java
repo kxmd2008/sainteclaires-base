@@ -32,7 +32,6 @@ public class ProductShot extends BaseEntity {
 	private String productName;
 	@Transient
 	private String pic;
-	@Transient
 	private String size;
 	
 	public BigDecimal getSum() {
