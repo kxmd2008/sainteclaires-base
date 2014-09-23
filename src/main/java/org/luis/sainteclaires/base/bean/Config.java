@@ -11,14 +11,24 @@ import org.luis.basic.domain.BaseEntity;
 public class Config extends BaseEntity {
 
 	private static final long serialVersionUID = 6608743398739140605L;
-	@Column(name="ckey", length = 20)
+	@Column(name = "ckey", length = 20)
 	private String key;
-	@Column(length = 20)
+	@Column(length = 150)
 	private String value;
 	@Column(length = 50)
 	private String description;
 	@Column(length = 50)
 	private String note;
+	@Column(length = 20)
+	private String type;
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	public String getDescription() {
 		return description;

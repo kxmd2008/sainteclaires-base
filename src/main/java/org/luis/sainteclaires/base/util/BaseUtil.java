@@ -109,7 +109,12 @@ public class BaseUtil {
 		return BasicUtil.getWebAppPath() + PRODUCT_PATH + getDatePath();
 	}
 	
+	public static String getBgPath(){
+		return BasicUtil.getWebAppPath() + BG_PATH + getDatePath();
+	}
+	
 	public static final String PRODUCT_PATH = "product/";
+	public static final String BG_PATH = "images/";
 	
 	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/");
 	private static SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
@@ -120,6 +125,10 @@ public class BaseUtil {
 		
 	public static String getProductPath2(){
 		return PRODUCT_PATH + getDatePath();
+	}
+	
+	public static String getBgPath2(){
+		return BG_PATH + getDatePath();
 	}
 	
 	public static String getCurrDate(){

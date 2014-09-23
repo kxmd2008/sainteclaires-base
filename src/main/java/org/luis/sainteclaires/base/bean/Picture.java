@@ -1,34 +1,40 @@
 package org.luis.sainteclaires.base.bean;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.luis.basic.domain.BaseEntity;
 
-@Entity
-@Table(name = "picture")
 public class Picture extends BaseEntity {
 	private static final long serialVersionUID = 7231158911559060931L;
-	@Column(length=50)
-	private String icon;
-	@Column(length=50, name = "product_no")
-	private String productNo;
+	private List<String> pics = new ArrayList<String>();
 
-	public String getIcon() {
-		return icon;
+	private String name;
+
+	private String picStr;
+
+	public String getPicStr() {
+		return picStr;
 	}
 
-	public void setIcon(String icon) {
-		this.icon = icon;
+	public void setPicStr(String picStr) {
+		this.picStr = picStr;
 	}
 
-	public String getProductNo() {
-		return productNo;
+	public List<String> getPics() {
+		return pics;
 	}
 
-	public void setProductNo(String productNo) {
-		this.productNo = productNo;
+	public void setPics(List<String> pics) {
+		this.pics = pics;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

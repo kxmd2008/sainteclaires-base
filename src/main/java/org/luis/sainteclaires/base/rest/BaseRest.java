@@ -1,5 +1,6 @@
 package org.luis.sainteclaires.base.rest;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,11 @@ public class BaseRest {
 	public String index(ModelMap map) {
 		List<Category> parents = BaseUtil.getParentCates();
 		Map<Long, List<Category>> subcatMap = BaseUtil.getSubCatsMap();
+		List<String> list = new ArrayList<String>();
+		list.add("2222");
+		list.add("3333");
+		
+		map.put("list", list);
 		map.put("parents", parents);
 		map.put("subcatMap", subcatMap);
 		return "common/index";
