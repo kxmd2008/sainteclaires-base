@@ -8,14 +8,18 @@ import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.luis.basic.domain.FilterAttributes;
 import org.luis.basic.rest.model.SimpleMessage;
 import org.luis.basic.util.SpringContextFactory;
+import org.luis.basic.util.StringUtils;
 import org.luis.sainteclaires.base.INameSpace;
 import org.luis.sainteclaires.base.bean.Category;
+import org.luis.sainteclaires.base.bean.Config;
 import org.luis.sainteclaires.base.bean.ProductShot;
 import org.luis.sainteclaires.base.bean.ProductVo;
 import org.luis.sainteclaires.base.bean.ShoppingBag;
 import org.luis.sainteclaires.base.bean.service.ProductVoService;
+import org.luis.sainteclaires.base.bean.service.ServiceFactory;
 import org.luis.sainteclaires.base.util.BaseUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -35,10 +39,12 @@ public class BaseRest {
 	public String index(ModelMap map) {
 		List<Category> parents = BaseUtil.getParentCates();
 		Map<Long, List<Category>> subcatMap = BaseUtil.getSubCatsMap();
+		FilterAttributes fa = FilterAttributes.blank().add("key", "首页").add("type", INameSpace.TYPE_BGPIC);
+		Config config = ServiceFactory.getConfigService().findOneByFilter(fa);
+		map.put("bgs", config.getValue());
 		List<String> list = new ArrayList<String>();
-		list.add("2222");
+		list.add("2224");
 		list.add("3333");
-		
 		map.put("list", list);
 		map.put("parents", parents);
 		map.put("subcatMap", subcatMap);
