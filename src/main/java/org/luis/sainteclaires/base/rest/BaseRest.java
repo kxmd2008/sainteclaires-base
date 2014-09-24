@@ -57,10 +57,11 @@ public class BaseRest {
 	public String shop(HttpServletRequest req, ModelMap map) {
 		List<Category> parents = BaseUtil.getParentCates();
 		Map<Long, List<Category>> subcatMap = BaseUtil.getSubCatsMap();
-		FilterAttributes fa = FilterAttributes.blank().add("key", "商店")
-				.add("type", INameSpace.TYPE_BGPIC);
-		Config config = ServiceFactory.getConfigService().findOneByFilter(fa);
-		map.put("bgs", config.getValue());
+//		FilterAttributes fa = FilterAttributes.blank().add("key", "商店")
+//				.add("type", INameSpace.TYPE_BGPIC);
+//		Config config = ServiceFactory.getConfigService().findOneByFilter(fa);
+		Picture pic = BaseUtil.getBgPic("商店");
+		map.put("bgs", pic.getPics());
 		map.put("parents", parents);
 		map.put("subcatMap", subcatMap);
 		return "common/shop";
