@@ -4,18 +4,25 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.luis.basic.domain.FilterAttributes;
 import org.luis.basic.util.BasicUtil;
 import org.luis.basic.util.SpringContextFactory;
+import org.luis.basic.util.StringUtils;
 import org.luis.sainteclaires.base.INameSpace;
 import org.luis.sainteclaires.base.bean.Account;
 import org.luis.sainteclaires.base.bean.Category;
+import org.luis.sainteclaires.base.bean.Config;
+import org.luis.sainteclaires.base.bean.Picture;
 import org.luis.sainteclaires.base.bean.service.AccountService;
 import org.luis.sainteclaires.base.bean.service.ProductVoService;
 import org.luis.sainteclaires.base.bean.service.ServiceFactory;
@@ -23,7 +30,39 @@ import org.luis.sainteclaires.base.bean.service.ServiceFactory;
 public class BaseUtil {
 	private static final Map<Long, List<Category>> cates = new ConcurrentHashMap<Long, List<Category>>();
 	private static List<Category> parents;
-
+	private static final Map<String, Picture> picMap = new ConcurrentHashMap<String, Picture>();
+	private static final Lock picLock = new ReentrantLock();
+	public static Picture getBgPic(String cateName) {
+		picLock.lock();
+		try {
+			if(picMap.get(cateName) == null){
+				FilterAttributes fa = FilterAttributes.blank().add("key", cateName);
+				Config config = ServiceFactory.getConfigService().findOneByFilter(fa);
+				Picture picture = config2Pic(config);
+				picMap.put(cateName, picture);
+			}
+		} finally {
+			picLock.unlock();
+		}
+		return picMap.get(cateName);
+	}
+	
+	public static void storeBgPic(String cateName, Picture pic) {
+		picMap.remove(cateName);
+		picMap.put(cateName, pic);
+	}
+	
+	public static void removeBgPic(Long id) {
+		Iterator<Entry<String, Picture>> it = picMap.entrySet().iterator();
+		while (it.hasNext()) {
+			Entry<String, Picture> e = it.next();
+			if(e.getValue().getId().equals(id)){
+				picMap.remove(e.getValue().getName());
+				break;
+			}
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
 	public static List<Category> getParentCates() {
 		if (parents == null) {
@@ -134,5 +173,16 @@ public class BaseUtil {
 	public static String getCurrDate(){
 		return sdf2.format(new Date());
 	}
-
+	
+	public static Picture config2Pic(Config config){
+		Picture picture = new Picture();
+		if(config != null){
+			picture.setId(config.getId());
+			picture.setName(config.getKey());
+			picture.setPicStr(config.getValue());
+			picture.setPics(StringUtils.parseStr(config.getValue(), ","));
+		}
+		return picture;
+	}
+	
 }
