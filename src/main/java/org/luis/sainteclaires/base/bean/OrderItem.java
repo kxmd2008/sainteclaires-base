@@ -25,7 +25,17 @@ public class OrderItem extends BaseEntity {
 	private String productName;
 	@Transient
 	private String pic;
+	@Transient
+	private BigDecimal sum = BigDecimal.ZERO;
 	private String size;
+
+	public BigDecimal getSum() {
+		return sum;
+	}
+
+	public void setSum(BigDecimal sum) {
+		this.sum = sum;
+	}
 
 	public Long getOrderId() {
 		return orderId;
