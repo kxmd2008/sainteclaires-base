@@ -13,6 +13,8 @@ import org.luis.basic.util.SpringContextFactory;
 import org.luis.sainteclaires.base.INameSpace;
 import org.luis.sainteclaires.base.bean.Category;
 import org.luis.sainteclaires.base.bean.Config;
+import org.luis.sainteclaires.base.bean.Order;
+import org.luis.sainteclaires.base.bean.OrderItem;
 import org.luis.sainteclaires.base.bean.Picture;
 import org.luis.sainteclaires.base.bean.ProductShot;
 import org.luis.sainteclaires.base.bean.ProductVo;
@@ -57,9 +59,10 @@ public class BaseRest {
 	public String shop(HttpServletRequest req, ModelMap map) {
 		List<Category> parents = BaseUtil.getParentCates();
 		Map<Long, List<Category>> subcatMap = BaseUtil.getSubCatsMap();
-//		FilterAttributes fa = FilterAttributes.blank().add("key", "商店")
-//				.add("type", INameSpace.TYPE_BGPIC);
-//		Config config = ServiceFactory.getConfigService().findOneByFilter(fa);
+		// FilterAttributes fa = FilterAttributes.blank().add("key", "商店")
+		// .add("type", INameSpace.TYPE_BGPIC);
+		// Config config =
+		// ServiceFactory.getConfigService().findOneByFilter(fa);
 		Picture pic = BaseUtil.getBgPic("商店");
 		map.put("bgs", pic.getPics());
 		map.put("parents", parents);
@@ -106,13 +109,12 @@ public class BaseRest {
 	public String detail(HttpServletRequest req, ModelMap map) {
 		Long id = Long.valueOf(req.getParameter("id"));
 		ProductVo pv = productVoService.get(id);
-		ShoppingBag bag = (ShoppingBag) req.getSession().getAttribute(
+		Order bag = (Order) req.getSession().getAttribute(
 				INameSpace.KEY_SESSION_CART);
-		if (bag != null && !bag.getProductShots().isEmpty()) {
-			ProductShot shot = bag.getProductShots().get(
-					bag.getProductShots().size() - 1);
+		if (bag != null && !bag.getItems().isEmpty()) {
+			OrderItem shot = bag.getItems().get(bag.getItems().size() - 1);
 			pv.setSize(shot.getSize());
-			pv.setNum(shot.getNumber());
+			pv.setNum(shot.getNum());
 			if (id.equals(shot.getProductId())) {
 				map.put("addSucc", Boolean.TRUE);
 			}
@@ -141,6 +143,25 @@ public class BaseRest {
 	 */
 	@RequestMapping(value = "cart", method = RequestMethod.GET)
 	public String cart(HttpServletRequest req, ModelMap map) {
+//		Account account = BaseUtil.getSessionAccount(req);
+//		if (account != null) {
+//			OrderService orderService = SpringContextFactory
+//					.getSpringBean(OrderService.class);
+//			Order order = orderService.findUnpayOrder(account.getLoginName());
+//			if(order != null){//有未支付订单
+//				Order bag = (Order) BaseUtil.getSessionAttr(req, INameSpace.KEY_SESSION_ORDER);
+//				if(bag != null){
+//					order
+//				}
+//				BaseUtil.setSessionAttr(req, INameSpace.KEY_SESSION_ORDER, order);
+//			} else {
+//				Order bag = (Order) BaseUtil.getSessionAttr(req, INameSpace.KEY_SESSION_ORDER);
+//				if(bag != null){
+//					
+//				}
+//			}
+////			map.put("shopingbag", order);
+//		}
 		setModel(map);
 		return "common/shoppingbag";
 	}
@@ -189,8 +210,8 @@ public class BaseRest {
 		return "common/legal";
 	}
 
-	@RequestMapping(value = "add2cart", method = RequestMethod.POST)
-	@ResponseBody
+//	@RequestMapping(value = "add2cart", method = RequestMethod.POST)
+//	@ResponseBody
 	public SimpleMessage<ShoppingBag> addToCart(ProductShot ps,
 			HttpServletRequest req, ModelMap map) {
 		ShoppingBag bag = (ShoppingBag) req.getSession().getAttribute(

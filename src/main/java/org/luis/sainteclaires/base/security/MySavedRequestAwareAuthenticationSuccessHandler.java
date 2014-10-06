@@ -7,8 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.luis.basic.util.SpringContextFactory;
+import org.luis.sainteclaires.base.INameSpace;
 import org.luis.sainteclaires.base.bean.Account;
+import org.luis.sainteclaires.base.bean.Order;
+import org.luis.sainteclaires.base.bean.OrderItem;
 import org.luis.sainteclaires.base.bean.service.AccountService;
+import org.luis.sainteclaires.base.bean.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,6 +38,20 @@ public class MySavedRequestAwareAuthenticationSuccessHandler extends
         session.setAttribute("userName", userDetails.getUsername());
         Account dbUser = accountService.getAccount(userDetails.getUsername());  
         session.setAttribute("custAccount", dbUser);
+        
+        Order bag = (Order) session.getAttribute(INameSpace.KEY_SESSION_ORDER);
+        OrderService orderService = SpringContextFactory.getSpringBean(OrderService.class);
+        Order order = orderService.findUnpayOrder(dbUser.getLoginName());
+        if(bag == null){
+        	session.setAttribute(INameSpace.KEY_SESSION_ORDER, order);
+        } else {
+        	if(order != null){
+        		order.setAmount(order.getAmount().add(bag.getAmount()));
+        		for(OrderItem item : bag.getItems()){
+        			order.getItems().add(item);
+        		}
+        	}
+        }
         if (savedRequest == null) {
             super.onAuthenticationSuccess(request, response, authentication);
             return;

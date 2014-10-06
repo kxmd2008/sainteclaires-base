@@ -47,7 +47,7 @@ public class Order extends BaseEntity {
 	private long tradeTime;// 付款时间
 	@Column(length = 50)
 	private String account;// 客户帐号
-	private BigDecimal amount;// 订单金额
+	private BigDecimal amount = BigDecimal.ZERO;// 订单金额
 	private Integer status = STATUS_UNPAY;// 订单状态 0:待付款；1：已付款待处理；2：已发货；3：已收货
 	@Transient
 	private List<OrderItem> items = new ArrayList<OrderItem>();// 订单明细

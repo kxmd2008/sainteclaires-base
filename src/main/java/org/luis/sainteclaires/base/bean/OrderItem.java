@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.luis.basic.domain.BaseEntity;
 
 @Entity
@@ -99,6 +101,20 @@ public class OrderItem extends BaseEntity {
 
 	public void setPrice(BigDecimal price) {
 		this.price = price;
+	}
+	
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(this.getPrice())
+				.append(this.getNum()).append(this.getProductId())
+				.toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		OrderItem shot = (OrderItem) obj;
+		return new EqualsBuilder().append(this.productId, shot.getProductId())
+				.isEquals();
 	}
 
 }
