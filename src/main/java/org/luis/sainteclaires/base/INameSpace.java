@@ -8,6 +8,7 @@ public interface INameSpace {
 	String KEY_SESSION_USERNAME = "userName";
 	String KEY_ORDER_NO = "ORDER_NO";
 	String KEY_LAST_URL = "LAST_URL";
+	String KEY_SESSION_LOCALE = "locale";
 	
 	
 	String TYPE_BGPIC = "BGPIC";

@@ -2,14 +2,17 @@ package org.luis.sainteclaires.base.rest;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.luis.basic.domain.FilterAttributes;
 import org.luis.basic.rest.model.SimpleMessage;
 import org.luis.basic.util.SpringContextFactory;
+import org.luis.basic.util.SpringMvcAware;
 import org.luis.sainteclaires.base.INameSpace;
 import org.luis.sainteclaires.base.bean.Category;
 import org.luis.sainteclaires.base.bean.Config;
@@ -24,9 +27,11 @@ import org.luis.sainteclaires.base.bean.service.ServiceFactory;
 import org.luis.sainteclaires.base.util.BaseUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.LocaleResolver;
 
 @Controller
 @RequestMapping
@@ -49,6 +54,19 @@ public class BaseRest {
 		map.put("subcatMap", subcatMap);
 		return "common/index";
 	}
+	
+	@RequestMapping(value="changeLocale", method = RequestMethod.POST)
+	@ResponseBody
+	public SimpleMessage<Object> changeLocale(HttpServletRequest req, HttpServletResponse resp, String localeStr){
+		String[] temp = localeStr.split("_");
+		LocaleResolver localResolver = (LocaleResolver) SpringMvcAware
+				.getBean("localeResolver");
+		Locale locale = new Locale(temp[0], temp[1]);
+		localResolver.setLocale(req, resp, locale);
+		SimpleMessage<Object> sm = new SimpleMessage<Object>();
+		BaseUtil.setSessionAttr(req, INameSpace.KEY_SESSION_LOCALE, localeStr);
+		return sm;
+	}
 
 	/**
 	 * 产品购买
@@ -56,7 +74,8 @@ public class BaseRest {
 	 * @return
 	 */
 	@RequestMapping(value = "shop", method = RequestMethod.GET)
-	public String shop(HttpServletRequest req, ModelMap map) {
+	public String shop(HttpServletRequest req, HttpServletResponse resp,
+			ModelMap map) {
 		List<Category> parents = BaseUtil.getParentCates();
 		Map<Long, List<Category>> subcatMap = BaseUtil.getSubCatsMap();
 		// FilterAttributes fa = FilterAttributes.blank().add("key", "商店")
@@ -69,7 +88,7 @@ public class BaseRest {
 		map.put("subcatMap", subcatMap);
 		return "common/shop";
 	}
-
+	
 	/**
 	 * 获取category 背景图片
 	 * 
@@ -143,25 +162,27 @@ public class BaseRest {
 	 */
 	@RequestMapping(value = "cart", method = RequestMethod.GET)
 	public String cart(HttpServletRequest req, ModelMap map) {
-//		Account account = BaseUtil.getSessionAccount(req);
-//		if (account != null) {
-//			OrderService orderService = SpringContextFactory
-//					.getSpringBean(OrderService.class);
-//			Order order = orderService.findUnpayOrder(account.getLoginName());
-//			if(order != null){//有未支付订单
-//				Order bag = (Order) BaseUtil.getSessionAttr(req, INameSpace.KEY_SESSION_ORDER);
-//				if(bag != null){
-//					order
-//				}
-//				BaseUtil.setSessionAttr(req, INameSpace.KEY_SESSION_ORDER, order);
-//			} else {
-//				Order bag = (Order) BaseUtil.getSessionAttr(req, INameSpace.KEY_SESSION_ORDER);
-//				if(bag != null){
-//					
-//				}
-//			}
-////			map.put("shopingbag", order);
-//		}
+		// Account account = BaseUtil.getSessionAccount(req);
+		// if (account != null) {
+		// OrderService orderService = SpringContextFactory
+		// .getSpringBean(OrderService.class);
+		// Order order = orderService.findUnpayOrder(account.getLoginName());
+		// if(order != null){//有未支付订单
+		// Order bag = (Order) BaseUtil.getSessionAttr(req,
+		// INameSpace.KEY_SESSION_ORDER);
+		// if(bag != null){
+		// order
+		// }
+		// BaseUtil.setSessionAttr(req, INameSpace.KEY_SESSION_ORDER, order);
+		// } else {
+		// Order bag = (Order) BaseUtil.getSessionAttr(req,
+		// INameSpace.KEY_SESSION_ORDER);
+		// if(bag != null){
+		//
+		// }
+		// }
+		// // map.put("shopingbag", order);
+		// }
 		setModel(map);
 		return "common/shoppingbag";
 	}
@@ -210,8 +231,8 @@ public class BaseRest {
 		return "common/legal";
 	}
 
-//	@RequestMapping(value = "add2cart", method = RequestMethod.POST)
-//	@ResponseBody
+	// @RequestMapping(value = "add2cart", method = RequestMethod.POST)
+	// @ResponseBody
 	public SimpleMessage<ShoppingBag> addToCart(ProductShot ps,
 			HttpServletRequest req, ModelMap map) {
 		ShoppingBag bag = (ShoppingBag) req.getSession().getAttribute(
