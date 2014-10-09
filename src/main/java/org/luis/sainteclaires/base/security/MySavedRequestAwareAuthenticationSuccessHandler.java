@@ -14,6 +14,7 @@ import org.luis.sainteclaires.base.bean.Order;
 import org.luis.sainteclaires.base.bean.OrderItem;
 import org.luis.sainteclaires.base.bean.service.AccountService;
 import org.luis.sainteclaires.base.bean.service.OrderService;
+import org.luis.sainteclaires.base.util.BaseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -51,6 +52,10 @@ public class MySavedRequestAwareAuthenticationSuccessHandler extends
         			order.getItems().add(item);
         		}
         	}
+        }
+        String locale = (String) BaseUtil.getSessionAttr(request, INameSpace.KEY_SESSION_LOCALE);
+        if(locale == null){
+        	BaseUtil.setSessionAttr(request, INameSpace.KEY_SESSION_LOCALE, "zh_CN");
         }
         if (savedRequest == null) {
             super.onAuthenticationSuccess(request, response, authentication);
