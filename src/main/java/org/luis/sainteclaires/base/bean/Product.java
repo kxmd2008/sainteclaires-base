@@ -15,12 +15,18 @@ public class Product extends BaseEntity {
 	private static final long serialVersionUID = -4680639268444282632L;
 	@Column(length = 50)
 	private String name;// 产品名称
+	@Column(length = 50, name="name_en")
+	private String nameEn;// 产品名称
 	@Column(length = 200)
 	private String description;// 产品描述
+	@Column(length = 200, name="description_en")
+	private String descriptionEn;// 产品描述
 	@Column(name = "category_id")
 	private Long categoryId;
 	@Column(name = "category_name")
 	private String categoryName;
+	@Column(name = "category_name_en")
+	private String categoryNameEn;
 	@Column(length = 50, name = "product_no")
 	private String productNo;// 产品编号
 //	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

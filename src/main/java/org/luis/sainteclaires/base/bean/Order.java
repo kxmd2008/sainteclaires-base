@@ -30,6 +30,10 @@ public class Order extends BaseEntity {
 	 * 已收货
 	 */
 	public static final Integer STATUS_DELIVERIED = 3;
+	/**
+	 * 退|换货
+	 */
+	public static final Integer STATUS_RETURN = 4;
 
 	/**
 	 * 
@@ -48,12 +52,23 @@ public class Order extends BaseEntity {
 	@Column(length = 50)
 	private String account;// 客户帐号
 	private BigDecimal amount = BigDecimal.ZERO;// 订单金额
-	private Integer status = STATUS_UNPAY;// 订单状态 0:待付款；1：已付款待处理；2：已发货；3：已收货
+	private Integer status = STATUS_UNPAY;// 订单状态 0:待付款；1：已付款待处理；2：已发货；3：已收货；
 	@Transient
 	private List<OrderItem> items = new ArrayList<OrderItem>();// 订单明细
 
 	@Column(length = 50, name = "cust_no")
 	private String custNo;
+
+	@Column(length = 250)
+	private String note;
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
 
 	public String getCustNo() {
 		return custNo;

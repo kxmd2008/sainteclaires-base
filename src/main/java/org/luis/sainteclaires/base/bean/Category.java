@@ -16,14 +16,34 @@ public class Category extends BaseEntity {
 	private static final long serialVersionUID = -6305965741752477104L;
 	@Column(length = 50)
 	private String name;//
+	@Column(length = 50, name = "name_en")
+	private String nameEn;//
 	@Column(name = "parent_id")
 	private Long parentId;// parentId不为null，为二级类别
 	@Column(name = "parent_name")
 	private String parentName = "";
+	@Column(name = "parent_name_en")
+	private String parentNameEn = "";
 	@Column(name = "order_no")
 	private Integer orderNo;// 序号
 	@Transient
 	private boolean selected = false;
+
+	public String getParentNameEn() {
+		return parentNameEn;
+	}
+
+	public void setParentNameEn(String parentNameEn) {
+		this.parentNameEn = parentNameEn;
+	}
+
+	public String getNameEn() {
+		return nameEn;
+	}
+
+	public void setNameEn(String nameEn) {
+		this.nameEn = nameEn;
+	}
 
 	public boolean isSelected() {
 		return selected;

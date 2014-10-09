@@ -14,6 +14,11 @@ import org.luis.basic.domain.BaseEntity;
 @Entity
 @Table(name = "order_item")
 public class OrderItem extends BaseEntity {
+	public static final Integer STATUS_COMMON = 1;
+	/**
+	 * 退换货
+	 */
+	public static final Integer STATUS_RETURN = 2;
 	private static final long serialVersionUID = 7892163388246757549L;
 	@Column(length = 50, name = "product_no")
 	private String productNo;// 购买产品
@@ -21,6 +26,7 @@ public class OrderItem extends BaseEntity {
 	private Long orderId;// 购买产品
 	private int num;// 购买数量
 	private BigDecimal price;// 当时产品价格，如果没下单，下次进来应该是按最新的价格显示
+	private Integer status = STATUS_COMMON;
 	@Column(name = "product_id")
 	private Long productId;
 	@Transient
@@ -30,6 +36,25 @@ public class OrderItem extends BaseEntity {
 	@Transient
 	private BigDecimal sum = BigDecimal.ZERO;
 	private String size;
+
+	@Column(length = 250)
+	private String note;// 退货|换货理由
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
 	public BigDecimal getSum() {
 		return sum;
@@ -102,12 +127,11 @@ public class OrderItem extends BaseEntity {
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder().append(this.getPrice())
-				.append(this.getNum()).append(this.getProductId())
-				.toHashCode();
+				.append(this.getNum()).append(this.getProductId()).toHashCode();
 	}
 
 	@Override
