@@ -49,7 +49,9 @@ public class BaseRest {
 		FilterAttributes fa = FilterAttributes.blank().add("key", "首页")
 				.add("type", INameSpace.TYPE_BGPIC);
 		Config config = ServiceFactory.getConfigService().findOneByFilter(fa);
-		map.put("bgs", config.getValue());
+		if(config != null){
+			map.put("bgs", config.getValue());
+		}
 		map.put("parents", parents);
 		map.put("subcatMap", subcatMap);
 		return "common/index";
