@@ -34,6 +34,10 @@ public class OrderItem extends BaseEntity {
 	 * 退|换货
 	 */
 	public static final Integer STATUS_RETURN = 4;
+	/**
+	 * 交易完成
+	 */
+	public static final Integer STATUS_COMPLETE = 9;
 	private static final long serialVersionUID = 7892163388246757549L;
 	@Column(length = 50, name = "product_no")
 	private String productNo;// 购买产品
