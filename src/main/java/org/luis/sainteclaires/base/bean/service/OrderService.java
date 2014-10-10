@@ -16,12 +16,12 @@ public class OrderService {
 
 	public Order createOrder(Order bag, String userName) {
 		//查询客户未付款订单
-		if(bag.getId() == null){
-			Order order = findUnpayOrder(userName);
-			if(order != null){
-				bag.setAmount(order.getAmount().add(bag.getAmount()));
-			}
-		}
+//		if(bag.getId() == null){
+//			Order order = findUnpayOrder(userName);
+//			if(order != null){
+//				bag.setAmount(order.getAmount().add(bag.getAmount()));
+//			}
+//		}
 		
 		boolean b = ServiceFactory.getOrderService().save(bag);
 		if (!b) {
