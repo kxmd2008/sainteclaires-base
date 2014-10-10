@@ -208,6 +208,10 @@ public class BaseRest {
 	@RequestMapping(value = "howtobuy", method = RequestMethod.GET)
 	public String howtobuy(HttpServletRequest req, ModelMap map) {
 		setModel(map);
+		String locale = (String) BaseUtil.getSessionAttr(req, INameSpace.KEY_SESSION_LOCALE);
+		if("en_US".equals(locale)){
+			return "common/howtobuyEn";
+		}
 		return "common/howtobuy";
 	}
 
