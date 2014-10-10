@@ -14,23 +14,40 @@ import org.luis.basic.domain.BaseEntity;
 @Entity
 @Table(name = "order_item")
 public class OrderItem extends BaseEntity {
-	public static final Integer STATUS_COMMON = 1;
 	/**
-	 * 退换货
+	 * 待付款
 	 */
-	public static final Integer STATUS_RETURN = 2;
+	public static final Integer STATUS_UNPAY = 0;
+	/**
+	 * 已付款未处理
+	 */
+	public static final Integer STATUS_UNDEAL = 1;
+	/**
+	 * 已发送
+	 */
+	public static final Integer STATUS_SENDED = 2;
+	/**
+	 * 已收货
+	 */
+	public static final Integer STATUS_DELIVERIED = 3;
+	/**
+	 * 退|换货
+	 */
+	public static final Integer STATUS_RETURN = 4;
 	private static final long serialVersionUID = 7892163388246757549L;
 	@Column(length = 50, name = "product_no")
 	private String productNo;// 购买产品
 	@Column(name = "order_id")
-	private Long orderId;// 购买产品
+	private Long orderId;// 订单Id
 	private int num;// 购买数量
 	private BigDecimal price;// 当时产品价格，如果没下单，下次进来应该是按最新的价格显示
-	private Integer status = STATUS_COMMON;
+	private Integer status = STATUS_UNPAY;
 	@Column(name = "product_id")
 	private Long productId;
 	@Transient
 	private String productName;
+	@Transient
+	private String productNameEn;
 	@Transient
 	private String pic;
 	@Transient
@@ -39,6 +56,14 @@ public class OrderItem extends BaseEntity {
 
 	@Column(length = 250)
 	private String note;// 退货|换货理由
+
+	public String getProductNameEn() {
+		return productNameEn;
+	}
+
+	public void setProductNameEn(String productNameEn) {
+		this.productNameEn = productNameEn;
+	}
 
 	public String getNote() {
 		return note;
