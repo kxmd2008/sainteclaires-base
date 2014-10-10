@@ -234,6 +234,10 @@ public class BaseRest {
 	@RequestMapping(value = "legal", method = RequestMethod.GET)
 	public String legal(HttpServletRequest req, ModelMap map) {
 		setModel(map);
+		String locale = (String) BaseUtil.getSessionAttr(req, INameSpace.KEY_SESSION_LOCALE);
+		if("en_US".equals(locale)){
+			return "common/legalEn";
+		}
 		return "common/legal";
 	}
 
