@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.luis.basic.util.SpringContextFactory;
 import org.luis.sainteclaires.base.INameSpace;
 import org.luis.sainteclaires.base.bean.Account;
 import org.luis.sainteclaires.base.bean.Order;
+import org.luis.sainteclaires.base.bean.OrderItem;
 import org.luis.sainteclaires.base.bean.service.AccountService;
 import org.luis.sainteclaires.base.bean.service.OrderService;
 import org.luis.sainteclaires.base.util.BaseUtil;
@@ -40,9 +40,8 @@ public class MySavedRequestAwareAuthenticationSuccessHandler extends
         session.setAttribute("custAccount", dbUser);
         
         Order bag = (Order) session.getAttribute(INameSpace.KEY_SESSION_ORDER);
-        OrderService orderService = SpringContextFactory.getSpringBean(OrderService.class);
-//        Order order = orderService.findUnpayOrder(dbUser.getLoginName());
         if(bag != null){
+        	bag = orderMeger(bag, dbUser.getLoginName());
         	bag = orderService.createOrder(bag, dbUser.getLoginName());
 //        } else {
 //        	if(order != null){
@@ -77,6 +76,26 @@ public class MySavedRequestAwareAuthenticationSuccessHandler extends
         logger.debug("Redirecting to DefaultSavedRequest Url: " + targetUrl);
         getRedirectStrategy().sendRedirect(request, response, targetUrl);
     }
+    
+    /**
+     * 与未支付订单合并
+     * @param bag
+     * @param userName
+     */
+    private Order orderMeger(Order bag, String userName){
+    	//查询客户未付款订单
+		if(bag.getId() == null){
+			Order order = orderService.findUnpayOrder(userName);
+			if(order != null){
+				for(OrderItem item : bag.getItems()){
+					order.getItems().add(item);
+				}
+				order.setAmount(order.getAmount().add(bag.getAmount()));
+				bag = order;
+			}
+		}
+		return bag;
+    }
 
     public void setRequestCache(RequestCache requestCache) {
         this.requestCache = requestCache;
@@ -84,5 +103,7 @@ public class MySavedRequestAwareAuthenticationSuccessHandler extends
     
     @Autowired
     private AccountService accountService;
+    @Autowired
+    private OrderService orderService;
 	
 }
