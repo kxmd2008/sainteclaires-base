@@ -11,7 +11,6 @@ import org.luis.basic.util.SpringContextFactory;
 import org.luis.sainteclaires.base.INameSpace;
 import org.luis.sainteclaires.base.bean.Account;
 import org.luis.sainteclaires.base.bean.Order;
-import org.luis.sainteclaires.base.bean.OrderItem;
 import org.luis.sainteclaires.base.bean.service.AccountService;
 import org.luis.sainteclaires.base.bean.service.OrderService;
 import org.luis.sainteclaires.base.util.BaseUtil;
@@ -42,16 +41,18 @@ public class MySavedRequestAwareAuthenticationSuccessHandler extends
         
         Order bag = (Order) session.getAttribute(INameSpace.KEY_SESSION_ORDER);
         OrderService orderService = SpringContextFactory.getSpringBean(OrderService.class);
-        Order order = orderService.findUnpayOrder(dbUser.getLoginName());
-        if(bag == null){
-        	session.setAttribute(INameSpace.KEY_SESSION_ORDER, order);
-        } else {
-        	if(order != null){
-        		order.setAmount(order.getAmount().add(bag.getAmount()));
-        		for(OrderItem item : bag.getItems()){
-        			order.getItems().add(item);
-        		}
-        	}
+//        Order order = orderService.findUnpayOrder(dbUser.getLoginName());
+        if(bag != null){
+        	bag = orderService.createOrder(bag, dbUser.getLoginName());
+//        } else {
+//        	if(order != null){
+//        		order.setAmount(order.getAmount().add(bag.getAmount()));
+//        		for(OrderItem item : bag.getItems()){
+//        			order.getItems().add(item);
+//        		}
+//        		session.removeAttribute(INameSpace.KEY_SESSION_ORDER);
+        		session.setAttribute(INameSpace.KEY_SESSION_ORDER, bag);
+//        	}
         }
         String locale = (String) BaseUtil.getSessionAttr(request, INameSpace.KEY_SESSION_LOCALE);
         if(locale == null){
