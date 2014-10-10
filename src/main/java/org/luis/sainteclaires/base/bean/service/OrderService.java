@@ -2,7 +2,9 @@ package org.luis.sainteclaires.base.bean.service;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.luis.basic.util.IbatisBuilder;
 import org.luis.sainteclaires.base.bean.Order;
@@ -73,8 +75,12 @@ public class OrderService {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Order> findOrders(String userName) {
+	public List<Order> findOrders(String userName, String start, String end) {
 		List<Order> list = null;
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userName", userName);
+		map.put("start", start);
+		map.put("end", end);
 		try {
 			list = (List<Order>) IbatisBuilder.queryForList(
 					"order.findOrders", userName);

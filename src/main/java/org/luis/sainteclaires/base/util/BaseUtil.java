@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.luis.basic.domain.FilterAttributes;
 import org.luis.basic.util.BasicUtil;
+import org.luis.basic.util.DateUtil;
 import org.luis.basic.util.SpringContextFactory;
 import org.luis.basic.util.StringUtils;
 import org.luis.sainteclaires.base.INameSpace;
@@ -172,6 +173,10 @@ public class BaseUtil {
 	
 	public static String getCurrDate(){
 		return sdf2.format(new Date());
+	}
+	
+	public static String getPre30(){
+		return sdf2.format(DateUtil.preDay(new Date(), 30));
 	}
 	
 	public static Picture config2Pic(Config config){
