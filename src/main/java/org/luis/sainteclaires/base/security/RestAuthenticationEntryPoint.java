@@ -32,8 +32,12 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
 		} else {
 			String path = request.getContextPath();
 			String content = request.getRequestURI();
-			// 未登录而访问前台受控资源时，跳转到前台登录页面
-			targetUrl = "/login";
+			if(content.equals(url)){
+				targetUrl = "/index";
+			}else {
+				// 未登录而访问前台受控资源时，跳转到前台登录页面
+				targetUrl = "/login";
+			}
 		}
 		targetUrl = request.getContextPath() + targetUrl;
 		response.sendRedirect(targetUrl);
