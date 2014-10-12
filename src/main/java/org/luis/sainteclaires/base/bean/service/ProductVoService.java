@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.luis.basic.domain.FilterAttributes;
+import org.luis.basic.util.DateUtil;
 import org.luis.basic.util.IbatisBuilder;
 import org.luis.basic.util.StringUtils;
 import org.luis.sainteclaires.base.bean.Category;
@@ -98,6 +99,7 @@ public class ProductVoService {
 	public boolean save(ProductVo vo) {
 		parsePic(vo);
 		Product product = new Product();
+		product.setYear(DateUtil.getYear());
 		try {
 			BeanUtils.copyProperties(product, vo);
 		} catch (Exception e) {
