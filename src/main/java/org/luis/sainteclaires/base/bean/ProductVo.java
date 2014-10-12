@@ -32,6 +32,15 @@ public class ProductVo implements Serializable {
 	private List<Long> cateIds;
 	private String size;
 	private Integer count = 1;// 购买数量
+	private Integer quarter;// 季度
+
+	public Integer getQuarter() {
+		return quarter;
+	}
+
+	public void setQuarter(Integer quarter) {
+		this.quarter = quarter;
+	}
 
 	public String getNameEn() {
 		return nameEn;
