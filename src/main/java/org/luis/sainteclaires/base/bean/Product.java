@@ -15,11 +15,11 @@ public class Product extends BaseEntity {
 	private static final long serialVersionUID = -4680639268444282632L;
 	@Column(length = 50)
 	private String name;// 产品名称
-	@Column(length = 50, name="name_en")
+	@Column(length = 50, name = "name_en")
 	private String nameEn;// 产品名称
 	@Column(length = 200)
 	private String description;// 产品描述
-	@Column(length = 200, name="description_en")
+	@Column(length = 200, name = "description_en")
 	private String descriptionEn;// 产品描述
 	@Column(name = "category_id")
 	private Long categoryId;
@@ -29,8 +29,8 @@ public class Product extends BaseEntity {
 	private String categoryNameEn;
 	@Column(length = 50, name = "product_no")
 	private String productNo;// 产品编号
-//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//	private List<ProductSize> psizes;// 尺码
+	// @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	// private List<ProductSize> psizes;// 尺码
 	private BigDecimal price;// 产品价格
 	private Integer num;// 产品库存
 	// 浏览量
@@ -39,11 +39,54 @@ public class Product extends BaseEntity {
 	private Integer status = 0;
 	private Boolean isNew = true;
 
+	private String year;// 产品所属年
+	private Integer quarter;// 衣服季度
+
 	// @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	// private List<Picture> pics;
 
 	public Boolean getIsNew() {
 		return isNew;
+	}
+
+	public String getNameEn() {
+		return nameEn;
+	}
+
+	public void setNameEn(String nameEn) {
+		this.nameEn = nameEn;
+	}
+
+	public String getDescriptionEn() {
+		return descriptionEn;
+	}
+
+	public void setDescriptionEn(String descriptionEn) {
+		this.descriptionEn = descriptionEn;
+	}
+
+	public String getCategoryNameEn() {
+		return categoryNameEn;
+	}
+
+	public void setCategoryNameEn(String categoryNameEn) {
+		this.categoryNameEn = categoryNameEn;
+	}
+
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public Integer getQuarter() {
+		return quarter;
+	}
+
+	public void setQuarter(Integer quarter) {
+		this.quarter = quarter;
 	}
 
 	public void setIsNew(Boolean isNew) {
@@ -98,13 +141,13 @@ public class Product extends BaseEntity {
 		this.categoryId = categoryId;
 	}
 
-//	public List<ProductSize> getPsizes() {
-//		return psizes;
-//	}
-//
-//	public void setPsizes(List<ProductSize> psizes) {
-//		this.psizes = psizes;
-//	}
+	// public List<ProductSize> getPsizes() {
+	// return psizes;
+	// }
+	//
+	// public void setPsizes(List<ProductSize> psizes) {
+	// this.psizes = psizes;
+	// }
 
 	public BigDecimal getPrice() {
 		return price;
