@@ -83,7 +83,7 @@ public class OrderService {
 		map.put("end", end);
 		try {
 			list = (List<Order>) IbatisBuilder.queryForList(
-					"order.findOrders", userName);
+					"order.findOrders", map);
 			for (Order order : list) {
 				for (OrderItem item : order.getItems()) {
 					String[] pics = item.getPic().split(",");
