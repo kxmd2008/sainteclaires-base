@@ -32,6 +32,7 @@ public class BaseUtil {
 	private static final Map<Long, List<Category>> cates = new ConcurrentHashMap<Long, List<Category>>();
 	private static List<Category> parents;
 	private static final Map<String, Picture> picMap = new ConcurrentHashMap<String, Picture>();
+	private static Config currQuarter;
 	private static final Lock picLock = new ReentrantLock();
 	public static Picture getBgPic(String cateName) {
 		picLock.lock();
@@ -179,6 +180,14 @@ public class BaseUtil {
 		return sdf2.format(DateUtil.preDay(new Date(), 30));
 	}
 	
+	public static Config getCurrQuarter() {
+		return currQuarter;
+	}
+
+	public static void setCurrQuarter(Config currQuarter) {
+		BaseUtil.currQuarter = currQuarter;
+	}
+
 	public static Picture config2Pic(Config config){
 		Picture picture = new Picture();
 		if(config != null){
