@@ -77,6 +77,9 @@ public class ProductVoService {
 		// List<Product> products =
 		// ServiceFactory.getProductService().findByAttributes(fa);
 		List<ProductVo> list = null;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cateId", cateId);
+		map.put("quarter", Integer.valueOf(BaseUtil.getCurrQuarter().getValue()));
 		try {
 			// for (Product product : products) {
 			// ProductVo vo = new ProductVo();
