@@ -242,6 +242,9 @@ public class ProductVoService {
 	public List<ProductVo> getProductByPage(Map<String,Integer> parameters){
 		List<ProductVo> vos = null;
 		try {
+			if(BaseUtil.getCurrQuarter() != null){
+				parameters.put("quarter", Integer.valueOf(BaseUtil.getCurrQuarter().getValue()));
+			}
 			vos = (List<ProductVo>) IbatisBuilder.queryForList("product.findProductByPage",
 					parameters);
 		} catch (Exception e) {
