@@ -80,6 +80,7 @@ public class ProductVoService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("cateId", cateId);
 		map.put("quarter", Integer.valueOf(BaseUtil.getCurrQuarter().getValue()));
+		map.put("year", DateUtil.getYear());
 		try {
 			// for (Product product : products) {
 			// ProductVo vo = new ProductVo();
@@ -88,7 +89,7 @@ public class ProductVoService {
 			// list.add(vo);
 			// }
 			list = (List<ProductVo>) IbatisBuilder.queryForList(
-					"product.findProductByCateId", cateId);
+					"product.findProductByCateId", map);
 			for (ProductVo vo : list) {
 				parsePic2(vo);
 			}

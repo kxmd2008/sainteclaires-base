@@ -95,4 +95,15 @@ public class OrderService {
 		}
 		return list;
 	}
+	
+	
+	public boolean pay(Order order){
+		order.setStatus(Order.STATUS_UNDEAL);
+		ServiceFactory.getOrderService().save(order);
+		for(OrderItem item : order.getItems()){
+			item.setStatus(OrderItem.STATUS_UNDEAL);
+			ServiceFactory.getOrderDetailService().save(item);
+		}
+		return true;
+	}
 }

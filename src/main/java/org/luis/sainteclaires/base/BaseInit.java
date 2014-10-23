@@ -14,7 +14,7 @@ public class BaseInit {
 	@PostConstruct
 	public void init() {
 		FilterAttributes fa = FilterAttributes.blank().add("key", "quarter")
-				.add("quarter", "QUARTER");
+				.add("type", "QUARTER");
 		Config config = ServiceFactory.getConfigService().findOneByFilter(fa);
 		BaseUtil.setCurrQuarter(config);
 	}
