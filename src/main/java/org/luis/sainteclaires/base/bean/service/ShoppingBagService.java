@@ -1,8 +1,5 @@
 package org.luis.sainteclaires.base.bean.service;
 
-import java.util.List;
-
-import org.luis.sainteclaires.base.bean.ProductShot;
 import org.luis.sainteclaires.base.bean.ShoppingBag;
 
 /**
