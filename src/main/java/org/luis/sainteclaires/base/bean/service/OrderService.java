@@ -2,6 +2,7 @@ package org.luis.sainteclaires.base.bean.service;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -102,6 +103,9 @@ public class OrderService {
 	
 	public boolean pay(Order order){
 		order.setStatus(Order.STATUS_UNDEAL);
+		Date date = new Date();
+		order.setTradeDate(BaseUtil.getCurrDate(date));
+		order.setTradeTime(date.getTime());
 		ServiceFactory.getOrderService().save(order);
 		for(OrderItem item : order.getItems()){
 			item.setStatus(OrderItem.STATUS_UNDEAL);

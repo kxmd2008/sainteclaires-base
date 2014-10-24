@@ -188,6 +188,10 @@ public class BaseUtil {
 	public static String getCurrDate() {
 		return sdf2.format(new Date());
 	}
+	
+	public static String getCurrDate(Date date) {
+		return sdf2.format(date);
+	}
 
 	public static String getPre30() {
 		return sdf2.format(DateUtil.preDay(new Date(), 30));
