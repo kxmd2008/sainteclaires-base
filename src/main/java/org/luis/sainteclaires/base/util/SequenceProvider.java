@@ -60,7 +60,7 @@ public class SequenceProvider {
 		return config.getValue();
 		
 	}
-
+	
 	private Config createNewConfig(String key) {
 		Config config = new Config();
 		config.setDescription("序列号");

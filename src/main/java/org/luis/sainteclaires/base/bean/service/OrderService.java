@@ -9,6 +9,7 @@ import java.util.Map;
 import org.luis.basic.util.IbatisBuilder;
 import org.luis.sainteclaires.base.bean.Order;
 import org.luis.sainteclaires.base.bean.OrderItem;
+import org.luis.sainteclaires.base.util.BaseUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +25,9 @@ public class OrderService {
 //				bag.setAmount(order.getAmount().add(bag.getAmount()));
 //			}
 //		}
-		
+		bag.setAccount(userName);
+		bag.setCustNo(userName);
+		bag.setOrderNo(BaseUtil.genOrderNo());
 		boolean b = ServiceFactory.getOrderService().save(bag);
 		if (!b) {
 			throw new RuntimeException("save Order error");
