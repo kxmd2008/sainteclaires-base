@@ -119,6 +119,10 @@ public class BaseUtil {
 		return req.getSession().getAttribute(key);
 	}
 	
+	public static void removeSessionAttr(HttpServletRequest req, String key){
+		req.getSession().removeAttribute(key);
+	}
+	
 	public static Account getSessionAccount(HttpServletRequest req){
 		Account account = (Account) req.getSession().getAttribute(INameSpace.KEY_SESSION_CUSTOMER);
 		return account;
