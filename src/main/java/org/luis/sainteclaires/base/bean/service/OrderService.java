@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.luis.basic.util.IbatisBuilder;
+import org.luis.basic.util.StringUtils;
 import org.luis.sainteclaires.base.bean.Order;
 import org.luis.sainteclaires.base.bean.OrderItem;
 import org.luis.sainteclaires.base.util.BaseUtil;
@@ -28,7 +29,9 @@ public class OrderService {
 //		}
 		bag.setAccount(userName);
 		bag.setCustNo(userName);
-		bag.setOrderNo(BaseUtil.genOrderNo());
+		if(StringUtils.isNullOrBlank(bag.getOrderNo())){
+			bag.setOrderNo(BaseUtil.genOrderNo());
+		}
 		boolean b = ServiceFactory.getOrderService().save(bag);
 		if (!b) {
 			throw new RuntimeException("save Order error");
@@ -112,5 +115,16 @@ public class OrderService {
 			ServiceFactory.getOrderDetailService().save(item);
 		}
 		return true;
+	}
+	
+	public void shouhuo (Long id, Integer status){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("status", status);
+		try {
+			IbatisBuilder.doUpdate("order.shouhuo", map);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
