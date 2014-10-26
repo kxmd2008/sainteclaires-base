@@ -67,6 +67,7 @@ public class SequenceProvider {
 		config.setValue("1");
 		config.setKey(key);
 		config.setNote(sdf.format(new Date()));
+		config.setType("SEQUENCE");
 		return config;
 	}
 	
