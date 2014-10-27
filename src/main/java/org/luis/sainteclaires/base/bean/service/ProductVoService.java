@@ -43,15 +43,15 @@ public class ProductVoService {
 		List<ProductSize> pz = ServiceFactory.getProductSizeService()
 				.findByAttributes(fa);
 		for (ProductSize productSize : pz) {
-			if (productSize.getSize().equals(Size.MESES06.name())) {
+			if (productSize.getSize().equals(Size.MESES0.getName())) {
 				vo.setMeses06(productSize.getNum());
-			} else if (productSize.getSize().equals(Size.MESES09.name())) {
+			} else if (productSize.getSize().equals(Size.MESES03.getName())) {
 				vo.setMeses09(productSize.getNum());
-			} else if (productSize.getSize().equals(Size.MESES12.name())) {
+			} else if (productSize.getSize().equals(Size.MESES06.getName())) {
 				vo.setMeses12(productSize.getNum());
-			} else if (productSize.getSize().equals(Size.MESES18.name())) {
+			} else if (productSize.getSize().equals(Size.MESES09.getName())) {
 				vo.setMeses18(productSize.getNum());
-			} else if (productSize.getSize().equals(Size.MESES24.name())) {
+			} else if (productSize.getSize().equals(Size.MESES12.getName())) {
 				vo.setMeses24(productSize.getNum());
 			}
 		}
@@ -198,15 +198,15 @@ public class ProductVoService {
 	}
 
 	private Integer getSizeNum(String size, ProductVo vo) {
-		if (size.equals(Size.MESES06.name())) {
+		if (size.equals(Size.MESES0.getName())) {
 			return vo.getMeses06();
-		} else if (size.equals(Size.MESES09.name())) {
+		} else if (size.equals(Size.MESES03.getName())) {
 			return vo.getMeses09();
-		} else if (size.equals(Size.MESES12.name())) {
+		} else if (size.equals(Size.MESES06.getName())) {
 			return vo.getMeses12();
-		} else if (size.equals(Size.MESES18.name())) {
+		} else if (size.equals(Size.MESES09.getName())) {
 			return vo.getMeses18();
-		} else if (size.equals(Size.MESES24.name())) {
+		} else if (size.equals(Size.MESES12.getName())) {
 			return vo.getMeses24();
 		}
 		return 0;
