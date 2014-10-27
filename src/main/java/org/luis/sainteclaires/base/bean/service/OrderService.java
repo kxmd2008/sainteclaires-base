@@ -104,15 +104,21 @@ public class OrderService {
 	}
 	
 	
-	public boolean pay(Order order){
+	public boolean pay(Order order) throws SQLException{
 		order.setStatus(Order.STATUS_UNDEAL);
 		Date date = new Date();
 		order.setTradeDate(BaseUtil.getCurrDate(date));
 		order.setTradeTime(date.getTime());
 		ServiceFactory.getOrderService().save(order);
+		
 		for(OrderItem item : order.getItems()){
 			item.setStatus(OrderItem.STATUS_UNDEAL);
 			ServiceFactory.getOrderDetailService().save(item);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("productId", item.getProductId());
+			map.put("size", item.getSize());
+			map.put("num", item.getNum());
+			IbatisBuilder.doUpdate("productsize.updateNum", map);
 		}
 		return true;
 	}
