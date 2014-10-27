@@ -111,6 +111,7 @@ public class OrderService {
 		order.setTradeTime(date.getTime());
 		ServiceFactory.getOrderService().save(order);
 		
+		int count = 0;
 		for(OrderItem item : order.getItems()){
 			item.setStatus(OrderItem.STATUS_UNDEAL);
 			ServiceFactory.getOrderDetailService().save(item);
@@ -118,7 +119,12 @@ public class OrderService {
 			map.put("productId", item.getProductId());
 			map.put("size", item.getSize());
 			map.put("num", item.getNum());
+			count = count + item.getNum();
 			IbatisBuilder.doUpdate("productsize.updateNum", map);
+			map.clear();
+			map.put("id", item.getProductId());
+			map.put("num", item.getNum());
+			IbatisBuilder.doUpdate("product.updateNum", map);
 		}
 		return true;
 	}
