@@ -34,6 +34,10 @@ public class Order extends BaseEntity {
 	 * 退|换货
 	 */
 	public static final Integer STATUS_RETURN = 4;
+	/**
+	 * 拒绝退|换货
+	 */
+	public static final Integer STATUS_RETURN_REJECT = 5;
 
 	/**
 	 * 
