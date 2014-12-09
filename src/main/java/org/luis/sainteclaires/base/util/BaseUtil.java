@@ -165,9 +165,14 @@ public class BaseUtil {
 	public static String getBgPath() {
 		return BasicUtil.getWebAppPath() + BG_PATH + getDatePath();
 	}
+	
+	public static String getSHowPath() {
+		return BasicUtil.getWebAppPath() + SHOW_PATH;
+	}
 
 	public static final String PRODUCT_PATH = "product/";
 	public static final String BG_PATH = "images/";
+	public static final String SHOW_PATH = "shows/";
 
 	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/");
 	private static SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");

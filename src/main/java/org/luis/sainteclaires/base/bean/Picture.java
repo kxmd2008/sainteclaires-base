@@ -3,15 +3,21 @@ package org.luis.sainteclaires.base.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.luis.basic.domain.BaseEntity;
-
-public class Picture extends BaseEntity {
-	private static final long serialVersionUID = 7231158911559060931L;
+public class Picture {
+	private Long id;
 	private List<String> pics = new ArrayList<String>();
 
 	private String name;
 
 	private String picStr;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getPicStr() {
 		return picStr;

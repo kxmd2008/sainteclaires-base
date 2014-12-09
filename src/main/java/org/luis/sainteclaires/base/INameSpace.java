@@ -12,4 +12,5 @@ public interface INameSpace {
 	
 	
 	String TYPE_BGPIC = "BGPIC";
+	String TYPE_PIC_SHOW = "PIC_SHOW";
 }
