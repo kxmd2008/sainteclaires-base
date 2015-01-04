@@ -15,4 +15,10 @@ public class PicShowRest {
 		return "";
 	}
 	
+	@RequestMapping(value = "show", method = RequestMethod.GET)
+	public String toShow(){
+		
+		
+		return "show/showPics";
+	}
 }
