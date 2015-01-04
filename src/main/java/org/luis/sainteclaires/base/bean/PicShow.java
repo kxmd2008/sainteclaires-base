@@ -24,6 +24,16 @@ public class PicShow extends BaseEntity {
 
 	private Integer views;// 浏览量
 
+	private Integer loves;// 点赞量
+
+	public Integer getLoves() {
+		return loves;
+	}
+
+	public void setLoves(Integer loves) {
+		this.loves = loves;
+	}
+
 	public String getName() {
 		return name;
 	}
