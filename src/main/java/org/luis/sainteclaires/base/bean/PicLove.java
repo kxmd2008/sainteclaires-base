@@ -1,5 +1,8 @@
 package org.luis.sainteclaires.base.bean;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import org.luis.basic.domain.BaseEntity;
 
 /**
@@ -8,6 +11,8 @@ import org.luis.basic.domain.BaseEntity;
  * @author Guoliang.Li
  * 
  */
+@Entity
+@Table(name = "pic_love")
 public class PicLove extends BaseEntity {
 
 	private static final long serialVersionUID = 5820493521594866222L;
