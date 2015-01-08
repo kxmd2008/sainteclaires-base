@@ -9,6 +9,7 @@ import org.luis.sainteclaires.base.bean.CategoryProduct;
 import org.luis.sainteclaires.base.bean.Config;
 import org.luis.sainteclaires.base.bean.Order;
 import org.luis.sainteclaires.base.bean.OrderItem;
+import org.luis.sainteclaires.base.bean.PicShow;
 import org.luis.sainteclaires.base.bean.Product;
 import org.luis.sainteclaires.base.bean.ProductShot;
 import org.luis.sainteclaires.base.bean.ProductSize;
@@ -123,6 +124,15 @@ public class ServiceFactory {
 			configService = GenericServiceBuilder.build(Config.class);
 		}
 		return configService;
+	}
+	
+	private static IGenericService<PicShow> picShowSvr;
+	
+	public static IGenericService<PicShow> getPicShowSvr() {
+		if (picShowSvr == null) {
+			picShowSvr = GenericServiceBuilder.build(PicShow.class);
+		}
+		return picShowSvr;
 	}
 
 }

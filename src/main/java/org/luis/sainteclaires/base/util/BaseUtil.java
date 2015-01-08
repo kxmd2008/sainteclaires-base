@@ -167,7 +167,11 @@ public class BaseUtil {
 	}
 	
 	public static String getSHowPath() {
-		return BasicUtil.getWebAppPath() + SHOW_PATH;
+		return BasicUtil.getWebAppPath() + SHOW_PATH;// + getDatePath();
+	}
+	
+	public static String getSHowPath2() {
+		return SHOW_PATH + getDatePath();
 	}
 
 	public static final String PRODUCT_PATH = "product/";

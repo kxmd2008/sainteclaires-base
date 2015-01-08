@@ -26,6 +26,26 @@ public class PicShow extends BaseEntity {
 
 	private Integer loves;// 点赞量
 
+	private String year;
+
+	private Integer quarter;// 季节
+
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public Integer getQuarter() {
+		return quarter;
+	}
+
+	public void setQuarter(Integer quarter) {
+		this.quarter = quarter;
+	}
+
 	public Integer getLoves() {
 		return loves;
 	}
