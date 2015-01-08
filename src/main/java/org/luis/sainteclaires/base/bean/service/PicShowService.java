@@ -3,6 +3,7 @@ package org.luis.sainteclaires.base.bean.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.luis.basic.domain.FilterAttributes;
 import org.luis.basic.util.StringUtils;
 import org.luis.sainteclaires.base.bean.PicShow;
 import org.luis.sainteclaires.base.util.BaseUtil;
@@ -54,8 +55,15 @@ public class PicShowService {
 				pic.setYear(ps.getYear());
 				pic.setViews(0);
 				pic.setLoves(0);
-				pic.setPath(BaseUtil.getProductPath2() + path);
-				list.add(pic);
+				pic.setPath(BaseUtil.SHOW_PATH + pic.getYear() + "/" + pic.getQuarter() + "/" + path);
+				FilterAttributes fa = FilterAttributes.blank()
+						.add("year", pic.getYear())
+						.add("quarter", pic.getQuarter())
+						.add("path", pic.getPath());
+				List<PicShow> has = ServiceFactory.getPicShowSvr().findByAttributes(fa);
+				if(has.isEmpty()){
+					list.add(pic);
+				}
 			}
 		}
 		return list;
