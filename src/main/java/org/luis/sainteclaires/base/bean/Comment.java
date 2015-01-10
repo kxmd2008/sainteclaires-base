@@ -1,5 +1,7 @@
 package org.luis.sainteclaires.base.bean;
 
+import java.util.Date;
+
 import org.luis.basic.domain.BaseEntity;
 
 /**
@@ -15,6 +17,15 @@ public class Comment extends BaseEntity {
 	private Long commentatorId;
 	private String comment;// 评论内容
 	private Long parentId;
+	private Date date;
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
 	public Long getParentId() {
 		return parentId;

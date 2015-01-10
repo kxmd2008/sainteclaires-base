@@ -2,6 +2,7 @@ package org.luis.sainteclaires.base.rest;
 
 import java.util.List;
 
+import org.luis.basic.rest.model.SimpleMessage;
 import org.luis.basic.util.SpringContextFactory;
 import org.luis.sainteclaires.base.bean.Category;
 import org.luis.sainteclaires.base.bean.PicShow;
@@ -12,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping
@@ -19,8 +21,9 @@ public class PicShowRest {
 	
 	@RequestMapping(value = "show/pic/{id}", method = RequestMethod.GET)
 	public String toDetail(ModelMap map, @PathVariable Long id){
+		picShowService.view(id);
 		PicShow ps = picShowService.findDetail(id);
-		map.put("ps", ps);
+		map.put("pic", ps);
 		return "show/pic";
 	}
 	
@@ -38,6 +41,20 @@ public class PicShowRest {
 		map.put("showpics", list);
 		setCate(map);
 		return "show/showPics";
+	}
+	
+	/**
+	 * 点赞
+	 * @param map
+	 * @param cateId
+	 * @return
+	 */
+	@RequestMapping(value = "show/love", method = RequestMethod.POST)
+	@ResponseBody
+	public SimpleMessage<Object> love(ModelMap map, Long id){
+		SimpleMessage<Object> sm = new SimpleMessage<Object>();
+		picShowService.love(id);
+		return sm;
 	}
 	
 	private void setCate(ModelMap map){
