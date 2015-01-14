@@ -2,6 +2,7 @@ package org.luis.sainteclaires.base.bean;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.luis.basic.domain.BaseEntity;
 
@@ -29,6 +30,26 @@ public class PicShow extends BaseEntity {
 	private String year;
 
 	private Integer quarter;// 季节
+	@Transient
+	private String cateName;
+	@Transient
+	private String cateNameEn;
+
+	public String getCateName() {
+		return cateName;
+	}
+
+	public void setCateName(String cateName) {
+		this.cateName = cateName;
+	}
+
+	public String getCateNameEn() {
+		return cateNameEn;
+	}
+
+	public void setCateNameEn(String cateNameEn) {
+		this.cateNameEn = cateNameEn;
+	}
 
 	public String getYear() {
 		return year;

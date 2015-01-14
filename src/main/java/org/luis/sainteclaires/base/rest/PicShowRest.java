@@ -5,7 +5,9 @@ import java.util.List;
 import org.luis.basic.rest.model.SimpleMessage;
 import org.luis.basic.util.SpringContextFactory;
 import org.luis.sainteclaires.base.bean.Category;
+import org.luis.sainteclaires.base.bean.Comment;
 import org.luis.sainteclaires.base.bean.PicShow;
+import org.luis.sainteclaires.base.bean.service.CommentService;
 import org.luis.sainteclaires.base.bean.service.PicShowService;
 import org.luis.sainteclaires.base.util.BaseUtil;
 import org.springframework.stereotype.Controller;
@@ -23,7 +25,10 @@ public class PicShowRest {
 	public String toDetail(ModelMap map, @PathVariable Long id){
 		picShowService.view(id);
 		PicShow ps = picShowService.findDetail(id);
+		List<Comment> list = commentService.findByPic(id);
+		map.put("comments", list);
 		map.put("pic", ps);
+		map.put("picShowId", id);
 		return "show/pic";
 	}
 	
@@ -57,6 +62,23 @@ public class PicShowRest {
 		return sm;
 	}
 	
+	/**
+	 * 评论
+	 * @param map
+	 * @param cateId
+	 * @return
+	 */
+	@RequestMapping(value = "show/comment", method = RequestMethod.POST)
+	@ResponseBody
+	public SimpleMessage<Object> comment(ModelMap map, Comment comment){
+		SimpleMessage<Object> sm = new SimpleMessage<Object>();
+		boolean b = commentService.comment(comment);
+		if(!b){
+			sm.getHead().setRep_code("100");
+		}
+		return sm;
+	}
+	
 	private void setCate(ModelMap map){
 		List<Category> parents = BaseUtil.getParentCates();
 		map.put("parents", parents);
@@ -64,4 +86,6 @@ public class PicShowRest {
 	
 	private PicShowService picShowService = SpringContextFactory
 			.getSpringBean(PicShowService.class);
+	private CommentService commentService = SpringContextFactory
+			.getSpringBean(CommentService.class);
 }

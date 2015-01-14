@@ -2,9 +2,12 @@ package org.luis.sainteclaires.base.bean.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.luis.basic.domain.FilterAttributes;
+import org.luis.basic.util.DateUtil;
 import org.luis.basic.util.IbatisBuilder;
 import org.luis.basic.util.StringUtils;
 import org.luis.sainteclaires.base.bean.PicShow;
@@ -16,8 +19,19 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(rollbackFor = { RuntimeException.class, Exception.class })
 public class PicShowService {
 
+	@SuppressWarnings("unchecked")
 	public List<PicShow> findAll(){
-		return ServiceFactory.getPicShowSvr().findAll();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("quarter", Integer.valueOf(BaseUtil.getCurrQuarter().getValue()));
+		map.put("year", DateUtil.getYear());
+		List<PicShow> list = null;
+		try {
+			list = ((List<PicShow>) IbatisBuilder.queryForList(
+					"picShow.findByYearQ", map));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 	
 	public List<PicShow> findByCate(Long cateId){
@@ -40,7 +54,7 @@ public class PicShowService {
 	}
 	
 	/**
-	 * +赞
+	 * +浏览量
 	 * @param id
 	 */
 	public void view(Long id){
