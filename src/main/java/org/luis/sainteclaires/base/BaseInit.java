@@ -16,6 +16,13 @@ public class BaseInit {
 		FilterAttributes fa = FilterAttributes.blank().add("key", "quarter")
 				.add("type", "QUARTER");
 		Config config = ServiceFactory.getConfigService().findOneByFilter(fa);
+		if(config == null){
+			config = new Config();
+			config.setKey("quarter");
+			config.setType("QUARTER");
+			config.setValue("1");
+			ServiceFactory.getConfigService().save(config);
+		}
 		BaseUtil.setCurrQuarter(config);
 	}
 }
