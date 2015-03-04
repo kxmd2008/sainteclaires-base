@@ -17,6 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+/**
+ * 图片展示
+ * @author Guoliang.Li
+ */
 @Controller
 @RequestMapping
 public class PicShowRest {
@@ -80,7 +84,8 @@ public class PicShowRest {
 	}
 	
 	private void setCate(ModelMap map){
-		List<Category> parents = BaseUtil.getParentCates();
+//		List<Category> parents = BaseUtil.getParentCates();
+		List<Category> parents = BaseUtil.getShowCates();
 		map.put("parents", parents);
 	}
 	

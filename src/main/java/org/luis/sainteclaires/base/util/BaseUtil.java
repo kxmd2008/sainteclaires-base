@@ -76,6 +76,23 @@ public class BaseUtil {
 		}
 		return parents;
 	}
+	
+	private static final List<Category> showCates = new ArrayList<Category>();
+	public static List<Category> getShowCates(){
+		if(showCates.isEmpty()){
+			Category c1 = new Category();
+			c1.setId(1l);
+			c1.setName("幼儿装");
+			c1.setNameEn("Babywear");
+			Category c2 = new Category();
+			c2.setId(2l);
+			c2.setName("童装");
+			c2.setNameEn("Children's wear");
+			showCates.add(c1);
+			showCates.add(c2);
+		}
+		return showCates;
+	}
 
 	public static List<Category> getSubCates(Long pid) {
 		if (cates.get(pid) == null) {

@@ -81,6 +81,9 @@ public class PicShowService {
 		if (!StringUtils.isNullOrBlank(ps.getPath())) {
 			String[] picArray = ps.getPath().split(",");
 			for (String path : picArray) {
+				if(path.contains("<span>")){
+					continue;
+				}
 				PicShow pic = new PicShow();
 				pic.setCateId(ps.getCateId());
 				pic.setQuarter(ps.getQuarter());

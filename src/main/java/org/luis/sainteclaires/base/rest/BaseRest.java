@@ -84,7 +84,9 @@ public class BaseRest {
 		// Config config =
 		// ServiceFactory.getConfigService().findOneByFilter(fa);
 		Picture pic = BaseUtil.getBgPic("商店");
-		map.put("bgs", pic.getPics().get(0));
+		if(pic != null){
+			map.put("bgs", pic.getPics().get(0));
+		}
 		map.put("parents", parents);
 		map.put("subcatMap", subcatMap);
 		return "common/shop";
