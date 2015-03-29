@@ -52,6 +52,11 @@ public class PicShowRest {
 		return "show/showPics";
 	}
 	
+	@RequestMapping(value = "introduction", method = RequestMethod.GET)
+	public String introduction(ModelMap map){
+		return "show/introduction";
+	}
+	
 	/**
 	 * 点赞
 	 * @param map
